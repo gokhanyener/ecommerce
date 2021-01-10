@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/urun', function () {
+    return "Urunadı: " ;
+})->name("urun");
+Route::get('/urun/{urunadı}', function ($urunadı) {
+    return "Urunadı: $urunadı" ;
+})->name("urun1");
