@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>E-Ticaret</title>
+        <title>Merhaba {{$ad}}</title>
     </head>
     <body class="antialiased">
-      <h1>Hoşgeldiniz</h1>
+      <h1>Kullanıcı : {{$ad}} {{$soyad}}</h1>
     </body>
 </html>
