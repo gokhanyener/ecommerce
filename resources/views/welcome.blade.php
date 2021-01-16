@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>E-Ticaret</title>
+    <title>E-Ticaret Gokhan</title>
 </head>
 <body class="antialiased">
 @php
