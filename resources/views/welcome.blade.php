@@ -82,6 +82,7 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
     @endphp
 
 {{$html}}
+
 <br>
 {!! $html  !!}
 
