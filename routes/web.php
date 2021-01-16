@@ -23,30 +23,31 @@ Route::get('/test', function () {
 });
 
 Route::get('/urun', function () {
-    return ['urun' => 'portakal'];
+    return ['urun'=>'portakal'];
 })->name('urun');
-
+/*
 Route::get('/urun/{urunadi}/{id}', function ($urunadi, $id) {
-    return "Ürün sayısı : $id $urunadi";
-})->name('urunSayisi');
-
-Route::get('/urun/{urunadi}/{id?}', function ($urunadi, $id = 1) {
-    return "Ürün sayısı : $id $urunadi";
+    return "Ürün id ve ad : $id $urunadi";
 });
 
-Route::get('yonlendir', function () {
+*/
+/*
+Route::get('/urun/{urunadi}/{id?}', function ($urunadi, $id = 0) {
+    return "Ürün id ve ad : $id $urunadi";
+})
+
+*/
+
+Route::get('/urun/{urunadi}/{id?}', function ($urunadi, $id = 0) {
+    return "Ürün id ve ad : $id $urunadi";
+});
+
+Route::get('/yonlendir', function () {
     return redirect()->route('urun');
 });
-Route::get('yonlendir2', function () {
-    return redirect()->route('urunSayisi', ['urunadi' => 'Muz', 'id' => 5]);
-});
+Route::get('/urun', function () {
+    return ['urun'=>'portakal'];
+})->name('urun');
 
-Route::get('page', [IndexController::class, 'index'])->name('page_route');
-Route::get('show', [IndexController::class, 'show'])->name('show_route');
-
-
-Route::get('/kategori/guncelle', [IndexController::class, 'update'])
-    ->name('kategori_guncelle');
-
-
-Route::get('index', [IndexController::class, 'index'])->name('index');
+Route::get('page',[IndexController::class,'Index'])->name('page_route');
+Route::get('show',[IndexController::class,'show'])->name('show_route');
