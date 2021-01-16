@@ -45,15 +45,7 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
 
 <hr>
 
-{{--@php($i=0)--}}
-@php
-    $i=0
-@endphp
 
-@while($i<15)
-    Döngü index: {{$i}} <br>
-    @php $i++ @endphp
-@endwhile
 
 
 

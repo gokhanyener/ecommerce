@@ -9,10 +9,10 @@ class IndexController extends Controller
 
     public function index()
     {
-        $name = 'gokhan';
-        $name1 = 'Omer';
-        $name2 = 'Hasan';
-        $lastname = 'yener';
+        $name = 'deniz';
+        $name1 = 'omer';
+        $name2 = 'hasan';
+        $lastname = 'ekinci';
 
         return view('welcome', compact('name', 'name1', 'name2', 'lastname'));
     }
