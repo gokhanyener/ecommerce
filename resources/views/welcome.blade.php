@@ -78,5 +78,15 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
 
 <hr>
 
+@php
+
+$html = '<strong>bold yazma stili</strong>'
+
+@endphp
+
+{{$html}}
+<br>
+{!! $html !!}
+
 </body>
 </html>
