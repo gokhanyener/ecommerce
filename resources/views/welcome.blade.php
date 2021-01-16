@@ -74,9 +74,16 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
     @break($user['id']===3)
 
 @endforeach
-
 <hr>
+    @php
 
+        $html = '<strong>Bold yazma stili</strong>';
+
+    @endphp
+
+{{$html}}
+<br>
+{!! $html  !!}
 
 
 </body>
