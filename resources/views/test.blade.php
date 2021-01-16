@@ -8,6 +8,5 @@
     </head>
     <body class="antialiased">
       <h1>Kullanıcı : {{$ad}} {{$soyad}}</h1>
-
     </body>
 </html>
