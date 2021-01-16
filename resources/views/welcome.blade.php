@@ -47,7 +47,7 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
 
 {{--@php($i=0)--}}
 @php
-    $i=0
+    $i=1
 @endphp
 
 @while($i<15)
