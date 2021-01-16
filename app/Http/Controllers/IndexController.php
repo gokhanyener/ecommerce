@@ -9,56 +9,12 @@ class IndexController extends Controller
 
     public function index()
     {
-        $name = 'gokhan';
-        $name1 = 'Omer';
-        $name2 = 'Hasan';
-        $lastname = 'yener';
-        $users = [
-            ['id' => 1, 'username' => 'gokhan'],
-            ['id' => 2, 'username' => 'deniz'],
-            ['id' => 3, 'username' => 'burak'],
-            ['id' => 4, 'username' => 'fatih'],
-            ['id' => 5, 'username' => 'salih'],
-        ];
-
-          $surnames =[
-            'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
-          ];
-
-        return view('welcome',
-            compact('name', 'name1', 'name2', 'lastname','surnames', 'users'));
+        return view('welcome');
     }
-
     public function show()
     {
-        //----db dataları ... ---
+        //db dataları...........
 
-        return view('test', ['ad' => 'Buğra', 'soyad' => 'Kadak']);
+        return view('test',['ad'=>'Buğra', 'soyAd'=>'Kadak']);
     }
-
-    public function update()
-    {
-        //*******************
-        /*    return view('kategori-guncelle',
-                [
-                    'kategori' => 'Meyve',
-                    'isim' => 'Elma'
-                ]);*/
-//--------------------------------------------------------------
-
-        /*        $kategori = 'meyve';
-                $isim =Muz';
-        /*
-                return view('kategori-guncelle',
-                    compact('kategori','isim'));*/
-
-        //-------------------------------------------------------
-        $data = [
-            'kategori' => 'Meyve',
-            'isim' => 'Portakal'
-        ];
-        return view('kategori-guncelle')->with($data);
-
-    }
-
 }
