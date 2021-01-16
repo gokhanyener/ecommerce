@@ -61,7 +61,7 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
              'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
            ];
 @endphp--}}
-@foreach($surnames as $surname)
+@foreach($surnames as $surname)php
     <p>Soyad : {{$surname}}</p>
 @endforeach
 
