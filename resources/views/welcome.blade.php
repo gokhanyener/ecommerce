@@ -61,22 +61,22 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
              'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
            ];
 @endphp--}}
+
 @foreach($surnames as $surname)
     <p>Soyad : {{$surname}}</p>
 @endforeach
 
+<hr>
 
+@foreach($users as $key => $user)
+    {{--<p>ID: {{$key}}</p> <br>--}}
+    @continue($user ['id'] === 1)
+    <p>ID: {{$user['id']}}, username: {{$user['username']}} </p>
+    @break($user ['id'] === 3)
 
+@endforeach
 
-
-
-
-
-
-
-
-
-
+<hr>
 
 </body>
 </html>
