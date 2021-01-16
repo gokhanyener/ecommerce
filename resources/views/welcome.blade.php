@@ -73,8 +73,14 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
 @endforeach
 
 <hr>
+@php
 
+$html = '<strong>Bold yazma stili</strong>';
+@endphp
 
+{{$html}}
+<br>
+{!! $html !!}
 
 
 
