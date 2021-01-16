@@ -10,12 +10,13 @@
 @php
     $country = 'Türkiye';
 @endphp
-Ad : {{$name}} <br>
-Soyad : {{$lastname}} <br>
-Ülke : {{$country}}
-<hr>
-Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
-
+<div class="div">
+    Ad : {{$name}} <br>
+    Soyad : {{$lastname}} <br>
+    Ülke : {{$country}}
+    <hr>
+    Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}}
+</div>
 <hr>
 
 @if ($name === 'Gokhan')
@@ -61,22 +62,20 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
              'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
            ];
 @endphp--}}
-@foreach($surnames as $surname)
+{{--@foreach($surnames as $surname)
     <p>Soyad : {{$surname}}</p>
 @endforeach
+<hr>--}}
 
+@foreach($users as $user )
 
+    <li class="">id: {{$user['id']}} username: {{$user['username']}}</li>
 
-
-
-
-
-
-
-
-
-
-
-
+@endforeach
+@php
+    $html = '<strong> Bold yazma stili </strong>';
+@endphp
+{{$html}}
+{!! $html !!}
 </body>
 </html>
