@@ -43,3 +43,4 @@ Route::get('yonlendir2', function () {
 
 Route::get('page', [IndexController::class, 'index'])->name('page_route');
 Route::get('show', [IndexController::class, 'show'])->name('show_route');
+Route::get('/kategori/guncelle',[IndexController::class,'update'])->name('kategori_guncelle');

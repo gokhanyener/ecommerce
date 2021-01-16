@@ -9,7 +9,10 @@ class IndexController extends Controller
 
     public function index()
     {
-        return view('welcome');
+
+        $Ad ="fatih";
+        $soyad="caliskan";
+        return view('welcome',compact('Ad','soyad'));
     }
 
     public function show()
@@ -18,5 +21,22 @@ class IndexController extends Controller
 
         return view('test',['ad'=>'Buğra','soyad'=>'Kadak']);
     }
+
+    public function update()
+    {
+/*        return view('kategori_guncelle',['kategori'=>'Meyve','isim'=>'armut']);*/
+
+       /* $kategori = 'meyve';
+        $isim = 'muz';
+        return view('kategori_guncelle',
+            compact('kategori','isim'));*/
+    $data=[
+        $kategori = 'meyve',
+        $isim = 'muz'
+            ];
+        return view('kategori_guncelle')->with($data);
+    }
+
+
 
 }

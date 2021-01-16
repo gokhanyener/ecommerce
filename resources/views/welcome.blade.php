@@ -10,5 +10,18 @@
       <h1>Hoşgeldiniz</h1>
     <h2>denemee</h2>
     sdasdada
+  @for($i=0;$i<15;$i++)
+      dongu index : {{$i}} <br>
+  @endfor
+      <hr>
+      @php
+      $i =0
+      @endphp
+      @while($i<15)
+          dongu index : {{$i}} <br>
+        @php($i++)
+      @endwhile
+
+
     </body>
 </html>
