@@ -55,7 +55,15 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
     @php $i++ @endphp
 @endwhile
 
-
+<hr>
+{{--@php
+    $surnames =[
+             'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
+           ];
+@endphp--}}
+@foreach($surnames as $surname)
+    <p>Soyad : {{$surname}}</p>
+@endforeach
 
 
 

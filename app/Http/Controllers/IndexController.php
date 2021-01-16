@@ -14,7 +14,12 @@ class IndexController extends Controller
         $name2 = 'Hasan';
         $lastname = 'yener';
 
-        return view('welcome', compact('name', 'name1', 'name2', 'lastname'));
+        $surnames =[
+          'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
+        ];
+
+        return view('welcome',
+            compact('name', 'name1', 'name2', 'lastname','surnames'));
     }
 
     public function show()
