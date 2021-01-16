@@ -18,8 +18,16 @@ class IndexController extends Controller
           'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
         ];
 
+        $users= [
+            ['id'=>1 , 'username' =>'Gokhan'],
+            ['id'=>2 , 'username' =>'deniz'],
+            ['id'=>3 , 'username' =>'burak'],
+            ['id'=>4 , 'username' =>'kemal'],
+            ['id'=>5 , 'username' =>'salih'],
+        ];
+
         return view('welcome',
-            compact('name', 'name1', 'name2', 'lastname','surnames'));
+            compact('name', 'name1', 'name2', 'lastname','surnames','users'));
     }
 
     public function show()
