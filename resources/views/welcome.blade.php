@@ -65,16 +65,17 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
     <p>Soyad : {{$surname}}</p>
 @endforeach
 
+<hr>
 
+@foreach($users as $key => $user)
+    {{--   <p>Id: {{$key}}</p>--}}
+    @continue($user['id'] === 1)
+    <p>id : {{$user['id']}}, username : {{$user['username']}}</p>
+    @break($user['id']===3)
 
+@endforeach
 
-
-
-
-
-
-
-
+<hr>
 
 
 
