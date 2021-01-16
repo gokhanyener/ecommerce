@@ -44,7 +44,7 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
 @endfor
 
 <hr>
-
+deneme
 {{--@php($i=0)--}}
 @php
     $i=0
