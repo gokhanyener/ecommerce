@@ -13,13 +13,19 @@ class IndexController extends Controller
         $name1 = 'Omer';
         $name2 = 'Hasan';
         $lastname = 'yener';
-
+        $users =[
+            ['id' =>1,'username'=>'gökhan'],
+            ['id' =>2,'username'=>'deniz'],
+            ['id' =>3,'username'=>'burak'],
+            ['id' =>4,'username'=>'fatih'],
+            ['id' =>5,'username'=>'salih']
+        ];
         $surnames =[
           'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
         ];
 
         return view('welcome',
-            compact('name', 'name1', 'name2', 'lastname','surnames'));
+            compact('name', 'name1', 'name2', 'lastname','surnames','users'));
     }
 
     public function show()
