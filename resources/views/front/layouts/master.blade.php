@@ -16,8 +16,18 @@
 
 @include('front.layouts.inc.slider')
 
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar ================================================== -->
+        @include('front.layouts.inc.category-sidebar')
+        <!-- Sidebar end=============================================== -->
+            @yield('content')
 
-@yield('content')
+        </div>
+    </div>
+</div>
+
 
 <!-- Footer ================================================================== -->
 
