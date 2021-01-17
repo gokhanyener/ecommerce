@@ -17,18 +17,22 @@
 @include('front.layouts.Inc.slider')
 
 
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar ================================================== -->
+        @include('front.layouts.Inc.category-sidebar')
+        <!-- Sidebar end=============================================== -->
+            @yield('content')
 
-@yield('content')
-
-
-
-
+        </div>
+    </div>
+</div>
 
 
 <!-- Footer ================================================================== -->
 @include('front.layouts.Inc.footer')
 @include('front.layouts.Inc.footer-script')
-
 
 
 </body>
