@@ -14,15 +14,13 @@
 @include('front.layouts.inc.header')
 <!-- Header End====================================================================== -->
 
+@include('front.layouts.inc.slider')
+
 <div id="mainBody">
     <div class="container">
         <div class="row">
             <!-- Sidebar ================================================== -->
-
-            @if (Request::path() !== 'contact' )
-                @include('front.layouts.inc.category-sidebar')
-            @endif
-
+        @include('front.layouts.inc.category-sidebar')
         <!-- Sidebar end=============================================== -->
             @yield('content')
 

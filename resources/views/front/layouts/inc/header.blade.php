@@ -26,20 +26,15 @@
                 <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
                 <form class="form-inline navbar-search" method="post" action="products.html">
                     <input id="srchFld" class="srchTxt" type="text"/>
-                    <select class="srchTxt">
-                        <option>All</option>
-                        <option>CLOTHES</option>
-                        <option>FOOD AND BEVERAGES</option>
-                        <option>HEALTH & BEAUTY</option>
-                        <option>SPORTS & LEISURE</option>
-                        <option>BOOKS & ENTERTAINMENTS</option>
-                    </select>
                     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="special_offer.html">Specials Offer</a></li>
-                    <li class=""><a href="normal.html">Delivery</a></li>
-                    <li class=""><a href="contact.html">Contact</a></li>
+                    <li class=""><a href="{{route('product')}}">Ürünler</a></li>
+                    <li class=""><a href="{{route('product_detail',['slug' => 'someslug'])}}">Ürün Detay</a></li>
+                    <li class=""><a href="{{route('basket')}}">Sepet</a></li>
+                    <li class=""><a href="{{route('contact')}}">İletişim</a></li>
+                    <li class=""><a href="{{route('login')}}">Login</a></li>
+                    <li class=""><a href="{{route('register')}}">Register</a></li>
                     <li class="">
                         <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span
                                 class="btn btn-large btn-success">Login</span></a>
