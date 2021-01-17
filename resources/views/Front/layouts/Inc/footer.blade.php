@@ -1,1 +1,1 @@
-E-Ticaret {{$year}}
+E-Ticaret ©{{$year}}
