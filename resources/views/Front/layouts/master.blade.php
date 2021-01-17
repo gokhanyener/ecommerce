@@ -1,21 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title',config('app.name'))</title>
+    <meta charset="utf-8">
+    <title>@yield('title', config('app.name'))</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @include('front.layouts.Inc.head')
+
 </head>
 <body>
+@include('front.layouts.Inc.header')
+<!-- Header End====================================================================== -->
 
-@include('Front.layouts.Inc.navbar')
-<hr>
+@include('front.layouts.Inc.slider')
+
+
+
 @yield('content')
-<hr>
 
 
-@include('front.layouts.Inc.footer',['year'=>date('Y')])
+
+
+
+
+<!-- Footer ================================================================== -->
+@include('front.layouts.Inc.footer')
+@include('front.layouts.Inc.footer-script')
+
+
 
 </body>
 </html>
