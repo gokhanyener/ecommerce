@@ -1,20 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
     <title>@yield('title',config('app.name'))</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @include('front.layouts.inc.head')
+
 </head>
 <body>
+@include('front.layouts.inc.header')
+<!-- Header End====================================================================== -->
 
-@include('front.layouts.inc.navbar')
+@include('front.layouts.inc.slider')
 
-<hr>
+
 @yield('content')
-<hr>
 
-@include('front.layouts.inc.footer',['year'=>date('Y')])
+<!-- Footer ================================================================== -->
+
+@include('front.layouts.inc.footer')
+
+@include('front.layouts.inc.footer-script')
+
+
 </body>
 </html>
+
