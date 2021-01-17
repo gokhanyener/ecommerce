@@ -47,7 +47,7 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
 
 {{--@php($i=0)--}}
 @php
-    $i=0
+    $i=1
 @endphp
 
 @while($i<15)
@@ -55,19 +55,29 @@ Merhaba {{$name .'-'.$lastname}}, ve ülkesi {{$country}} .
     @php $i++ @endphp
 @endwhile
 
+<hr>
+{{--@php
+    $surnames =[
+             'Zy','Bayram','Ekinci','Dağlar','Çalışkan'
+           ];
+@endphp--}}
+@foreach($surnames as $surname)
+    <p>Soyad : {{$surname}}</p>
+@endforeach
 
+<hr>
 
+<hr>
+    @php
 
+        $html = '<strong>Bold yazma stili</strong>';
 
+    @endphp
 
+{{$html}}
 
-
-
-
-
-
-
-
+<br>
+{!! $html  !!}
 
 
 </body>

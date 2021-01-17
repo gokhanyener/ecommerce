@@ -1,52 +1,22 @@
 <?php
 
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\front\MainController;
+use App\Http\Controllers\front\ProductController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/urun', function () {
-    return ['urun' => 'portakal'];
-})->name('urun');
-
-Route::get('/urun/{urunadi}/{id}', function ($urunadi, $id) {
-    return "Ürün sayısı : $id $urunadi";
-})->name('urunSayisi');
-
-Route::get('/urun/{urunadi}/{id?}', function ($urunadi, $id = 1) {
-    return "Ürün sayısı : $id $urunadi";
-});
-
-Route::get('yonlendir', function () {
-    return redirect()->route('urun');
-});
-Route::get('yonlendir2', function () {
-    return redirect()->route('urunSayisi', ['urunadi' => 'Muz', 'id' => 5]);
-});
-
-Route::get('page', [IndexController::class, 'index'])->name('page_route');
-Route::get('show', [IndexController::class, 'show'])->name('show_route');
 
 
-Route::get('/kategori/guncelle', [IndexController::class, 'update'])
-    ->name('kategori_guncelle');
+Route::get('', [MainController::class, 'index'])->name('homepage');
+Route::get('/product',[ProductController::class,'index'])->name('product');
 
 
-Route::get('index', [IndexController::class, 'index'])->name('index');
+
+Route::view('/category','front.category')->name('category');
+Route::view('/product/{slug}','front.product-detail')->name('product_detail');
+Route::view('/basket','front.basket')->name('basket');
+Route::view('/login','front.auth.login')->name('login');
+Route::view('/register','front.auth.register')->name('register');
+Route::view('/contact','front.contact')->name('contact');
+
+
+
