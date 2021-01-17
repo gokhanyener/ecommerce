@@ -9,17 +9,12 @@
 </head>
 <body>
 
-<a href="/">Anasayfa</a>
-<a href="/category">Kategori</a>
-<a href="/product">Ürün</a>
-<a href="/basket">Sepet</a>
+@include('front.layouts.inc.navbar')
 
 <hr>
 @yield('content')
 <hr>
 
-E-ticaret 2021
-
-
+@include('front.layouts.inc.footer',['year'=>date('Y')])
 </body>
 </html>
