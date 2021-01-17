@@ -1,5 +1,5 @@
 @extends('front.layouts.master')
-@section('title','Kategori')
+@yield('title','Kategori')
 
 @section('content')
 

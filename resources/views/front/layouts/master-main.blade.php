@@ -16,25 +16,21 @@
     <script src="themes/js/less.js" type="text/javascript"></script> -->
 
     <!-- Bootstrap style -->
-   @include('front.layouts.inc.head')
+    @include('front.layouts.inc.head')
 </head>
 <body>
 @include('front.layouts.inc.header')
 <!-- Header End====================================================================== -->
-
+@include('front.layouts.inc.slider')
 
 
 <div id="mainBody">
     <div class="container">
         <div class="row">
             <!-- Sidebar ================================================== -->
-
-            @if(Request::path()!='contact'))
-
-             @include('front.layouts.inc.category-slidebar')
-        @endif
-            <!-- Sidebar end=============================================== -->
-             @yield('content')
+        @include('front.layouts.inc.category-slidebar')
+        <!-- Sidebar end=============================================== -->
+            @yield('content')
         </div>
     </div>
 </div>
@@ -50,3 +46,4 @@
 @include('front.layouts.inc.footer-script')
 </body>
 </html>
+

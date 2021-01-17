@@ -1,4 +1,4 @@
-@extends('front.layouts.master')
+@extends('front.layouts.master-main')
 @section('title','Ana Sayfa')
 @section('content')
     <div class="span9">
