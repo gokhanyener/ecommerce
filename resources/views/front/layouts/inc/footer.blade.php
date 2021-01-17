@@ -1,1 +1,1 @@
-E-ticaret {{$year}}
+E-ticaret ©{{$year}}
