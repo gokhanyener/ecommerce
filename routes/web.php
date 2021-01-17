@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('',[MainController::class,'index'])->name('homepage');
 
 
-Route::view('/category','category')->name('category');
-Route::view('/product','product')->name('product');
-Route::view('/basket','product')->name('basket');
+Route::view('/category','front.category')->name('category');
+Route::view('/product','front.product')->name('product');
+Route::view('/basket','front.product')->name('basket');
 
 
