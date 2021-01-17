@@ -3,3 +3,5 @@
 @section('content')
     <h1>Kategori Sayfası</h1>
 @endsection
+
+
