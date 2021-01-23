@@ -20,3 +20,4 @@ Route::view('/contact','front.contact')->name('contact');
 
 
 
+Route::view('/admin/dashboard','admin.layouts.master')->name('admin.master');
