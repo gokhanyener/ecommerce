@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
@@ -16,11 +17,12 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->truncate();
 
+        $title = Str::random(10).' '. Str::random(10) ;
         DB::table("products")->insert([
-            'title'=>'Gömlek',
-            'slug'=>'gomlek',
+            'title'=> Str::title($title),
+            'slug'=> Str::slug($title),
             'content'=>'lorem ipsum',
-            'price'=>'50',
+            'price'=> rand(10,1000)/10,
         ]);
     }
 }
