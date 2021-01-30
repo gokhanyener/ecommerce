@@ -14,9 +14,11 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table("categories")->insert([
-            'title'=>'Kıyafet',
-            'slug'=>'kiyafet',
-        ]);
+        DB::table("categories")->insert(['title'=>'ELECTRONICS','slug'=>'electronics']);
+        DB::table("categories")->insert(['title'=>'CLOTHES ','slug'=>'clothes']);
+        DB::table("categories")->insert(['title'=>'FOOD AND BEVERAGES ','slug'=>'food-and-beverages']);
+        DB::table("categories")->insert(['title'=>'HEALTHY & BEAUTY ','slug'=>'healthy-beauty']);
+        DB::table("categories")->insert(['title'=>'SPORTS & LEISURE','slug'=>'sports-leisure']);
+        DB::table("categories")->insert(['title'=>'BOOKS & ENTERTAINMENTS','slug'=>'books-entertainments']);
     }
 }
