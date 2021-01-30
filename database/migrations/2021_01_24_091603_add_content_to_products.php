@@ -14,7 +14,7 @@ class AddContentToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->text('content')->after('slug');
+            $table->text('description')->after('slug');
         });
     }
 

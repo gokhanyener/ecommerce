@@ -23,14 +23,14 @@
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-inner">
-                <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+                <a class="brand" href="index.html"><img src="/themes/images/logo.png" alt="Bootsshop"/></a>
                 <form class="form-inline navbar-search" method="post" action="products.html">
                     <input id="srchFld" class="srchTxt" type="text"/>
                     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="{{route('product')}}">Ürünler</a></li>
-                    <li class=""><a href="{{route('product_detail',['slug' => 'someslug'])}}">Ürün Detay</a></li>
+                    <li class=""><a href="">Ürünler</a></li>
+                    <li class=""><a href="">Ürün Detay</a></li>
                     <li class=""><a href="{{route('basket')}}">Sepet</a></li>
                     <li class=""><a href="{{route('contact')}}">İletişim</a></li>
                     <li class=""><a href="{{route('login')}}">Login</a></li>

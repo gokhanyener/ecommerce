@@ -13,4 +13,6 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('front.product',compact('categories'));
     }
+
+
 }
