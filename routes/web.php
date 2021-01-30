@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\front\CategoryController;
 use App\Http\Controllers\front\HomePageController;
 use App\Http\Controllers\front\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('', [HomePageController::class, 'index'])->name('homepage');
-Route::get('/product/{slug}',[ProductController::class,'index'])->name('product');
 Route::get('/category/{slug}',[CategoryController::class,'index'])->name('category');
 
 
+Route::get('/product/{slug}',[ProductController::class,'index'])->name('product-detail');
+
 
 //Route::view('/product/{slug}','front.product-detail')->name('product_detail');
+
 Route::view('/basket','front.basket')->name('basket');
 Route::view('/login','front.auth.login')->name('login');
 Route::view('/register','front.auth.register')->name('register');

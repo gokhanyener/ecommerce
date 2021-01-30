@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Faker;
 
 class ProductSeeder extends Seeder
 {
@@ -13,16 +14,20 @@ class ProductSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker\Generator $faker)
     {
         DB::table('products')->truncate();
 
-        $title = Str::random(10).' '. Str::random(10) ;
-        DB::table("products")->insert([
-            'title'=> Str::title($title),
-            'slug'=> Str::slug($title),
-            'content'=>'lorem ipsum',
-            'price'=> rand(10,1000)/10,
-        ]);
+        for ($i = 0; $i < 50; $i++) {
+            $title = $faker->sentence(2);
+            DB::table("products")->insert([
+                'title' => Str::title($title),
+                'slug' => Str::slug($title),
+                'description' => $faker->sentence(20),
+                'price' => $faker->randomFloat(3,1,10)
+            ]);
+        }
+
+
     }
 }
