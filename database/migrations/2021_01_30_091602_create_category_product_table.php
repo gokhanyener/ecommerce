@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCategoryProductTable extends Migration
@@ -13,6 +14,7 @@ class CreateCategoryProductTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('category_product', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id')->unsigned();
@@ -22,6 +24,7 @@ class CreateCategoryProductTable extends Migration
             $table->foreign('category_id')->references('id')->on('category')->cascadeOnDelete();
             $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
         });
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**
