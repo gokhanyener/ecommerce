@@ -5,6 +5,11 @@
     <div class="span9">
 
         <h4>{{$category->title}} </h4>
+@if(count($products) === 0)
+            <div class="alert alert-primary" role="alert">
+                Bu kategoride ürün bulunmamaktadır.
+            </div>
+    @endif
 
         <ul class="thumbnails">
 
