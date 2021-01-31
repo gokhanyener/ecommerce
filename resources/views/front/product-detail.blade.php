@@ -6,7 +6,7 @@
 
             <li><a href="{{route('homepage')}}">Homepage</a> <span class="divider">/</span></li>
 
-            @foreach ($product->categories as $category)
+            @foreach ($product->categories()->distinct()->get() as $category)
                 <li><a href="{{route('category',$category->slug)}}">{{$category->title}}</a> <span class="divider">/</span></li>
             @endforeach
 

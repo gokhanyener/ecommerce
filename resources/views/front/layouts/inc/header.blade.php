@@ -23,8 +23,8 @@
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-inner">
-                <a class="brand" href="index.html"><img src="/themes/images/logo.png" alt="Bootsshop"/></a>
-                <form class="form-inline navbar-search" method="post" action="products.html">
+                <a class="brand" href="{{route('homepage')}}"><img src="/themes/images/logo.png" alt="Bootsshop"/></a>
+                <form class="form-inline navbar-search" method="post" action="#">
                     <input id="srchFld" class="srchTxt" type="text"/>
                     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                 </form>
