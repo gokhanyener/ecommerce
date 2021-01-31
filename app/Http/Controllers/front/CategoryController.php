@@ -5,6 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use Illuminate\Support\Facades\Request;
 
 class CategoryController extends Controller
@@ -23,10 +24,13 @@ class CategoryController extends Controller
 
     //dd(Product::with('categories:id,slug')->get()->toArray());
       //dd( Product::all()->toArray());
-
+        $opportunities = ProductDetail::with('product')
+            ->where('opportunity_product','1')
+            ->take(2)
+            ->get();
         $products = $category->products;
 
       //  dd($categories->toArray());
-        return view('front.category', compact('categories', 'category', 'products'));
+        return view('front.category', compact('categories', 'category', 'products','opportunities'));
     }
 }
