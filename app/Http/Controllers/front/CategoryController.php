@@ -4,6 +4,7 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Request;
 
 class CategoryController extends Controller
@@ -17,11 +18,15 @@ class CategoryController extends Controller
         //  $categories = Category::whereNull('up_id')->get();
 
         $category = Category::where('slug', $slug_category)->firstOrFail();
-        $products = $category->products;
 
         $categories = Category::with('children')->get();
 
+    //dd(Product::with('categories:id,slug')->get()->toArray());
+      //dd( Product::all()->toArray());
 
-        return view('front.category', compact('categories','category', 'products'));
+        $products = $category->products;
+
+      //  dd($categories->toArray());
+        return view('front.category', compact('categories', 'category', 'products'));
     }
 }

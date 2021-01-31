@@ -18,6 +18,9 @@ class CreateCategoryProductTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('product_id')->unsigned();
            // $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('category')->cascadeOnDelete();
+            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
         });
     }
 
