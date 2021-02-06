@@ -20,17 +20,44 @@ class ProductController extends Controller
         $product = Product::whereSlug($slug_product)->firstOrFail();
 
         $opportunities = ProductDetail::with('product')
-            ->where('opportunity_product','1')
+            ->where('opportunity_product', '1')
             ->take(2)
             ->get();
 
         return view('front.product-detail',
-            compact('categories','product','opportunities'));
+            compact('categories', 'product', 'opportunities'));
     }
 
-    public function search()
+    public function search(Request $request)
     {
-       return view();
+        $categories = Category::with('children')->get();
+        $opportunities = ProductDetail::with('product')
+            ->where('opportunity_product', '1')
+            ->take(2)
+            ->get();
+
+
+        /*        dd($request->except('search'));
+                dd($request->input('search'));
+                dd($request->get('search'));
+                dd($request->search);
+                dd($request->all());*/
+
+
+        $search = $request->input('search');
+        $products = Product::where('title', 'like', "%$search%")
+            ->orWhere('description', 'like', "%$search%")
+     //       ->distinct()
+            ->paginate(10);
+
+        $request->flash();
+
+        return view('front.search')
+            ->with([
+                'categories' => $categories,
+                'products' => $products,
+                'opportunities' => $opportunities
+            ]);
     }
 
 
