@@ -47,7 +47,6 @@ class CategoryController extends Controller
             //   dd($products->products->toArray());
             //    dd($products);
 
-            Category::join()->orderByDesc('id')->get();
 
         } elseif ($sorting === 'DESC') {
 

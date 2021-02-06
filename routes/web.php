@@ -14,6 +14,8 @@ Route::get('/category/{slug}',[CategoryController::class,'index'])->name('catego
 
 Route::get('/product/{slug}',[ProductController::class,'index'])->name('product-detail');
 Route::post('/search',[ProductController::class,'search'])->name('search');
+Route::get('/search',[ProductController::class,'search'])->name('get.search');
+// Route::any('/search',[ProductController::class,'search'])->name('search');
 
 
 //Route::view('/product/{slug}','front.product-detail')->name('product_detail');
