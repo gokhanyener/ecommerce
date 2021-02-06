@@ -17,12 +17,12 @@ class CreateCategoryProductTable extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('category_product', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->bigInteger('category_id')->index();
+            $table->bigInteger('product_id');
            // $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('category')->cascadeOnDelete();
-            $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
+      //      $table->foreign('category_id')->references('id')->on('category')->cascadeOnDelete();
+      //      $table->foreign('product_id')->references('id')->on('product')->cascadeOnDelete();
         });
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

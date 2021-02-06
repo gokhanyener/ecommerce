@@ -24,9 +24,10 @@
             </a>
             <div class="navbar-inner">
                 <a class="brand" href="{{route('homepage')}}"><img src="/themes/images/logo.png" alt="Bootsshop"/></a>
-                <form class="form-inline navbar-search" method="post" action="#">
-                    <input id="srchFld" class="srchTxt" type="text"/>
-                    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+                <form class="form-inline navbar-search" method="post"
+                      action="{{route('search')}}">
+                    <input id="srchFld" class="srchTxt"w type="text"/>
+                    <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">
                     <li class=""><a href="">Ürünler</a></li>
