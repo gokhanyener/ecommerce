@@ -28,5 +28,10 @@ class ProductController extends Controller
             compact('categories','product','opportunities'));
     }
 
+    public function search()
+    {
+       return view();
+    }
+
 
 }
