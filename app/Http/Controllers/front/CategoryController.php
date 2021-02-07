@@ -93,6 +93,7 @@ class CategoryController extends Controller
 
 
         // dd($categories->toArray());
-        return view('front.category', compact('categories', 'category', 'products', 'opportunities'));
+        return view('front.category',
+            compact('categories', 'category', 'products', 'opportunities'));
     }
 }

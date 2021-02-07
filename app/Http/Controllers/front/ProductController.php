@@ -41,6 +41,7 @@ class ProductController extends Controller
                 dd($request->input('search'));
                 dd($request->get('search'));
                 dd($request->search);
+                dd(request('search'));
                 dd($request->all());*/
 
 
