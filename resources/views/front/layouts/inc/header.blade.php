@@ -34,40 +34,16 @@
                     <button type="submit" id="submitButton" class="btn btn-primary">Search</button>
                 </form>
                 <ul id="topMenu" class="nav pull-right">
-                    <li class=""><a href="">Ürünler</a></li>
-                    <li class=""><a href="">Ürün Detay</a></li>
-                    <li class=""><a href="{{route('basket')}}">Sepet</a></li>
-                    <li class=""><a href="{{route('contact')}}">İletişim</a></li>
-                    <li class=""><a href="{{route('login')}}">Login</a></li>
-                    <li class=""><a href="{{route('register')}}">Register</a></li>
-                    <li class="">
-                        <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span
-                                class="btn btn-large btn-success">Login</span></a>
-                        <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login"
-                             aria-hidden="false">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3>Login Block</h3>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal loginFrm">
-                                    <div class="control-group">
-                                        <input type="text" id="inputEmail" placeholder="Email">
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="password" id="inputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="checkbox">
-                                            <input type="checkbox"> Remember me
-                                        </label>
-                                    </div>
-                                </form>
-                                <button type="submit" class="btn btn-success">Sign in</button>
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                            </div>
-                        </div>
-                    </li>
+
+                         @auth
+                            <li class=""><a href="{{route('logout')}}">Logout</a></li>
+                        @endauth
+
+                        @guest
+                            <li class=""><a href="{{route('login')}}">Login</a></li>
+                            <li class=""><a href="{{route('register')}}">Register</a></li>
+                        @endguest
+
                 </ul>
             </div>
         </div>

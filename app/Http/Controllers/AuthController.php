@@ -21,11 +21,15 @@ class AuthController extends Controller
 
         if ($request->isMethod('post')) {
 
+
             $user = User::create([
                 'name' =>   Str::of($request->firstName . ' ' . $request->lastName)->title()->trim(),
               //  'email' => Str::of($request->email)->trim(),
+                'phone' => $request->phone,
                 'email' => trim($request->email),
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'activation_code' => Str::random(50),
+                'status'=> 1
             ]);
 
             auth()->login($user);

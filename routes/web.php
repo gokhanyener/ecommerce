@@ -22,6 +22,7 @@ Route::get('/search', [ProductController::class, 'search'])->name('get.search');
 
 //Route::get('/register',[AuthController::class,'register'])->name('register');
 Route::match(['post', 'get'], '/register', [AuthController::class, 'register'])->name('register');
+Route::get( '/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::view('/basket', 'front.basket')->name('basket');
