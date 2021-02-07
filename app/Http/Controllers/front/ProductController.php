@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
@@ -45,13 +46,16 @@ class ProductController extends Controller
                 dd($request->all());*/
 
 
-        $search = $request->input('search');
+
+      $search = $request->input('search');
         $products = Product::where('title', 'like', "%$search%")
             ->orWhere('description', 'like', "%$search%")
-     //       ->distinct()
+            //       ->distinct()
             ->paginate(10);
 
         $request->flash();
+
+
 
         return view('front.search')
             ->with([
