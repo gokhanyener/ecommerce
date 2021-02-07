@@ -3990,6 +3990,8 @@
             /**
      * 
      *
+<<<<<<< HEAD
+=======
      * @see \Illuminate\Encryption\Encrypter
      */ 
         class Crypt {
@@ -4086,6 +4088,7 @@
             /**
      * 
      *
+>>>>>>> master
      * @see \Illuminate\Database\DatabaseManager
      * @see \Illuminate\Database\Connection
      */ 
@@ -14848,7 +14851,10 @@ namespace  {
             class Cache extends \Illuminate\Support\Facades\Cache {}
             class Config extends \Illuminate\Support\Facades\Config {}
             class Cookie extends \Illuminate\Support\Facades\Cookie {}
+<<<<<<< HEAD
+=======
             class Crypt extends \Illuminate\Support\Facades\Crypt {}
+>>>>>>> master
             class DB extends \Illuminate\Support\Facades\DB {}
             class Eloquent extends \Illuminate\Database\Eloquent\Model {             
                 /**
