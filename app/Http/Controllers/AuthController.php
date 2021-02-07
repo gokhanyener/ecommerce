@@ -21,6 +21,12 @@ class AuthController extends Controller
 
         if ($request->isMethod('post')) {
 
+            $this->validate(request(),[
+                'firstName'=>'required|min:3|max:50',
+                'lastName'=>'required|min:3|max:50',
+                'email'=>'required|email|unique:users',
+                'password'=>'required|confirmed|min:6|max:20'
+            ]);
 
             $user = User::create([
                 'name' =>   Str::of($request->firstName . ' ' . $request->lastName)->title()->trim(),
