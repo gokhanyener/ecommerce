@@ -29,33 +29,39 @@
                 <div class="control-group">
                     <label class="control-label" for="inputFname1">First name <sup style="color: red">*</sup></label>
                     <div class="controls">
-                        <input type="text" id="inputFname1" name="firstName" placeholder="First Name">
+                        <input type="text" id="inputFname1" name="firstName" placeholder="First Name" required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputLnam">Last name <sup style="color: red">*</sup></label>
                     <div class="controls">
-                        <input type="text" id="inputLnam" name="lastName" placeholder="Last Name">
+                        <input type="text" id="inputLnam" name="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="input_email">Phone <sup style="color: red">*</sup></label>
+                    <div class="controls">
+                        <input type="text" id="input_email" name="phone" placeholder="Phone" required>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="input_email">Email <sup style="color: red">*</sup></label>
                     <div class="controls">
-                        <input type="text" id="input_email" name="email" placeholder="Email">
+                        <input type="email" id="input_email" name="email" placeholder="Email" required>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputPassword1">Password <sup style="color: red">*</sup></label>
                     <div class="controls">
-                        <input type="password" id="inputPassword1" name="password" placeholder="Password">
+                        <input type="password" id="inputPassword1" name="password" placeholder="Password" required>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <label class="control-label" for="inputPassword1">Password Confirm <sup  style="color: red">*</sup></label>
                     <div class="controls">
-                        <input type="password" id="inputPassword1" name="password_confirmation" placeholder="Password">
+                        <input type="password" id="inputPassword1" name="password_confirmation" placeholder="Password" required>
                     </div>
                 </div>
 
@@ -63,8 +69,6 @@
 
                 <div class="control-group">
                     <div class="controls">
-                        <input type="hidden" name="email_create" value="1">
-                        <input type="hidden" name="is_new_customer" value="1">
                         <input class="btn btn-large btn-success" type="submit" value="Register" />
                     </div>
                 </div>
