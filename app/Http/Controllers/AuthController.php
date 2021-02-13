@@ -38,14 +38,14 @@ class AuthController extends Controller
                 'email' => trim($request->email),
                 'password' => Hash::make($request->password),
                 'activation_code' => Str::random(50),
-                'status' => 0
+                'status' => '0'
             ]);
 
 
             Mail::to($request->email)->send(new UserRegisterMail($user));
             Mail::to($request->email)->send(new AdminInfoMail($user));
 
-           // auth()->login($user);
+            // auth()->login($user);
 
             return redirect()->route('homepage');
         }
@@ -70,15 +70,44 @@ class AuthController extends Controller
 
     public function registerConfirm($activation_code)
     {
-        $user = User::where('activation_code',$activation_code)->firstOrFail();
+        $user = User::where('activation_code', $activation_code)->firstOrFail();
 
         $user->update([
-            'activation_code'=>null,
-            'status'=>1
+            'activation_code' => null,
+            'status' => '1'
         ]);
 
-         auth()->login($user);
+        auth()->login($user);
 
         return redirect()->route('homepage');
+    }
+
+    public function login(Request $request)
+    {
+
+        $data = $this->categoriesAndOpportunity();
+
+        if ($request->isMethod('post')) {
+
+            $this->validate(request(), [
+                'email' => 'required|email',
+                'password' => 'required|min:6|max:20'
+            ]);
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password,
+                'status' => '1'
+            ];
+            if (auth()->attempt($credentials)) {
+                $request->session()->regenerate();
+                return redirect()->intended('/');
+            } else {
+                $errors = ['email' => 'Hatalı giriş'];
+                return back()->withErrors($errors);
+            }
+
+        }
+
+        return view('front.auth.login')->with($data);
     }
 }
