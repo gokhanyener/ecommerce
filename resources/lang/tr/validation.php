@@ -158,7 +158,8 @@ return [
 
     'attributes' => [
         'email' => 'e-posta adresi',
-        'phone'=>'Telefon'
+        'phone'=>'Telefon',
+        'password '=>'Şifre'
     ],
 
 ];

@@ -26,11 +26,11 @@ Route::match(['post', 'get'], '/register', [AuthController::class, 'register'])-
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register-confirm/{activation_code}', [AuthController::class, 'registerConfirm'])
     ->name('register-confirmation');
-
+Route::match(['post', 'get'], 'login', [AuthController::class, 'login'])->name('login');
 
 
 Route::view('/basket', 'front.basket')->name('basket');
-Route::view('/login', 'front.auth.login')->name('login');
+//Route::view('/login', 'front.auth.login')->name('login');
 
 Route::view('/contact', 'front.contact')->name('contact');
 
