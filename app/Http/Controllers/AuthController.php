@@ -112,7 +112,7 @@ class AuthController extends Controller
         return view('front.auth.login')->with($data);
     }
 
-    public function logout(): RedirectResponse
+    public function logout()
     {
         auth()->logout();
         request()->session()->flush();
