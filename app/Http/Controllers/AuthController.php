@@ -7,6 +7,7 @@ use App\Mail\UserRegisterMail;
 use App\Models\Category;
 use App\Models\ProductDetail;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -53,7 +54,7 @@ class AuthController extends Controller
         return view('front.auth.register')->with($data);
     }
 
-    public function categoriesAndOpportunity()
+    public function categoriesAndOpportunity(): array
     {
 
         $opportunities = ProductDetail::with('product')
@@ -68,7 +69,7 @@ class AuthController extends Controller
         ];
     }
 
-    public function registerConfirm($activation_code)
+    public function registerConfirm($activation_code): RedirectResponse
     {
         $user = User::where('activation_code', $activation_code)->firstOrFail();
 
@@ -109,5 +110,13 @@ class AuthController extends Controller
         }
 
         return view('front.auth.login')->with($data);
+    }
+
+    public function logout(): RedirectResponse
+    {
+        auth()->logout();
+        request()->session()->flush();
+        request()->session()->regenerate();
+        return redirect()->route('homepage');
     }
 }
