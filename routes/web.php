@@ -34,8 +34,6 @@ Route::match(['post', 'get'], 'login', [AuthController::class, 'login'])->name('
 
 
 Route::view('/basket', 'front.basket')->name('basket');
-
-
 Route::view('/contact', 'front.contact')->name('contact');
 
 
@@ -46,11 +44,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     // Route::get('login',[AdminController::class,'login']);
     Route::match(['post', 'get'], 'login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-       /* ->middleware('admin');;*/
+    /* ->middleware('admin');;*/
 
     Route::group(['prefix' => 'categories'], function () {
-        Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category');
-
+        Route::match(['post', 'get'], '/', [AdminCategoryController::class, 'index'])->name('admin.category');
+        Route::get('new', [AdminCategoryController::class, 'form'])->name('admin.category.new');
+        Route::post('create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
+        Route::get('edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::post('update', [AdminCategoryController::class, 'update'])->name('admin.category.update');
     });
 
 
