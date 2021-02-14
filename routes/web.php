@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 
 //use App\Http\Controllers\admin\AuthController as AdminController;
 use App\Http\Controllers\front\CategoryController;
+use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\front\HomePageController;
 use App\Http\Controllers\front\ProductController;
 use App\Mail\UserRegisterMail;
@@ -46,6 +47,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     Route::match(['post', 'get'], 'login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
        /* ->middleware('admin');;*/
+
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/', [AdminCategoryController::class, 'index'])->name('admin.category');
+
+    });
+
+
 });
 
 
