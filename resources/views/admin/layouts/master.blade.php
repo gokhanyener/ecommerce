@@ -109,6 +109,6 @@
 <!-- container-scroller -->
 
 @include('admin.layouts.inc.footer-script')
-
+@yield('footer')
 </body>
 </html>

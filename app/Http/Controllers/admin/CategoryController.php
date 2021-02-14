@@ -4,14 +4,22 @@
 namespace App\Http\Controllers\admin;
 
 
-class CategoryController
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+
+class CategoryController  extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
     public function index()
     {
-        //******
-        $data = ['urun'=>'elma'];
-        return view('admin.category',$data);
+
+        $list = Category::paginate(5);
+
+        return view('admin.category',compact('list'));
     }
 
 }
