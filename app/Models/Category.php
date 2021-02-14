@@ -15,12 +15,19 @@ class Category extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class,'category_product');
+        return $this->belongsToMany(Product::class, 'category_product');
     }
 
     public function children()
     {
         return $this->hasMany(Category::class, 'up_id');
     }
+
+    public function upCategory()
+    {
+        return $this->belongsTo(Category::class, 'up_id')
+            ->withDefault(['title' => 'Base Category']);
+    }
+
 
 }

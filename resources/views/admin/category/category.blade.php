@@ -22,12 +22,11 @@
                             </form>
                         </div>
                         <div class="col-4">
-                            <a href="{{route('admin.category.new')}}" type="submit" class="btn btn-danger ml-3 float-right">Add</a>
+                            <a href="{{route('admin.category.new')}}" type="submit"
+                               class="btn btn-danger ml-3 float-right">Add</a>
                         </div>
 
                     </div>
-
-
 
 
                     <div class="row">
@@ -38,7 +37,8 @@
                                     <th>#</th>
                                     <th class="sortStyle">Title<i class="mdi mdi-chevron-down"></i></th>
                                     <th class="sortStyle">Slug<i class="mdi mdi-chevron-down"></i></th>
-                                    <th class="sortStyle float-right" >Action<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle">Base Category<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle float-right">Action<i class="mdi mdi-chevron-down"></i></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -48,11 +48,15 @@
                                         <td>{{$key +1 }}</td>
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->slug}}</td>
+                                        <td>{{$item->upCategory->title}}</td>
                                         <td class="float-right">
 
-                                            <a href="{{route('admin.category.edit',$item->id)}}" type="button" class="btn btn-outline-primary btn-fw">
+                                            <a href="{{route('admin.category.edit',$item->id)}}" type="button"
+                                               class="btn btn-outline-primary btn-fw">
                                                 <i class="mdi mdi-file-document"></i>Edit</a>
-                                            <button type="button" class="btn btn-sm btn-outline-danger btn-fw"><i class="mdi mdi-alert-outline"></i>Delete</button>
+                                            <a href="{{route('admin.category.delete',$item->id)}}" type="button"
+                                               class="btn btn-sm btn-outline-danger btn-fw">
+                                                <i class="mdi mdi-alert-outline"></i>Delete</a>
                                         </td>
 
                                     </tr>

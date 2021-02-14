@@ -24,7 +24,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Edit</h4>
                                         <form class="forms-sample" method="post"
-                                              action="{{route('admin.category.update')}}">
+                                              action="{{route('admin.category.update',$list->id)}}">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="ex">Title</label>
@@ -37,6 +37,7 @@
                                                 <input type="text" name="slug" class="form-control"
                                                        id="exampleInputPassword1" placeholder="Slug"
                                                        value="{{old('slug',$list->slug)}}">
+                                                <input type="hidden" name="old_slug" value="{{$list->slug}}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleSelectPrimary">Categories</label>
@@ -45,16 +46,14 @@
                                                     <option value="">Base Category</option>
                                                     @foreach($categories as $category)
                                                         <option value="{{$category->id}}"
-                                                            @php
-                                                                if($category->id === $list->up_id){
-                                                                            echo 'selected';
-                                                                        }
-                                                            @endphp
+                                                        @if($category->id === $list->up_id)
+                                                            selected
+                                                        @endif
                                                         >{{$category->title}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-
+                           {{--                 <input type="hidden" name="id" value="{{$list->id}}">--}}
                                             <button type="submit" class="btn btn-success mr-2">Submit</button>
                                             <button class="btn btn-light">Cancel</button>
                                         </form>

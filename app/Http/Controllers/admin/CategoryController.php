@@ -21,15 +21,18 @@ class CategoryController extends Controller
         if (request()->filled('search')) {
             request()->flash();
             $search = request()->search;
-            $list = Category::where('title', 'like', "%$search%")
+            $list = Category::with('upCategory')
+                ->where('title', 'like', "%$search%")
                 ->orderByDesc('id')
                 ->paginate(5)
                 ->appends('search', $search);
 
 
         } else {
-            $list = Category::orderByDesc('id')->paginate(5);
+            $list = Category::with('upCategory')
+                ->orderByDesc('id')->paginate(5);
         }
+       // dd($list);
         return view('admin.category.category', compact('list'));
     }
 
@@ -79,13 +82,60 @@ class CategoryController extends Controller
         $categories = Category::whereNull('up_id')->get();
         $list = Category::where('id', $id)->first();
 
-        return view('admin.category.edit',compact('list','categories'));
+        return view('admin.category.edit', compact('list', 'categories'));
 
     }
 
-    public function update()
+    public function update($id)
     {
-        return 77;
+
+        request()->merge(['slug' => Str::slug(request()->slug)]);
+
+        if (request()->slug === request()->old_slug) {
+            $data = [
+                'title' => 'required'
+            ];
+        } else {
+            if (!request()->filled('slug')) {
+                $slug = Str::slug(request()->title);
+                request()->merge(['slug' => $slug]);
+            }
+            $data = [
+                'title' => 'required',
+                'slug' => 'unique:categories,slug',
+            ];
+
+        }
+        $this->validate(request(), $data);
+
+        $item = Category::where('id', $id)->firstOrFail();
+        $up_id = null;
+        if (request()->filled('up_id')) {
+            $up_id = request()->up_id;
+        }
+        $item->update([
+            'title' => Str::title(request()->title),
+            'slug' => Str::slug(request()->slug),
+            'up_id' => $up_id
+        ]);
+
+        return redirect()->route('admin.category')
+            ->with('messages', 'Güncellendi')
+            ->with('type', 'success');
+
+    }
+
+    public function delete($id)
+    {
+
+        //  Category::destroy($id);
+        $category = Category::find($id);
+        $category->products()->detach();
+        $category->delete();
+
+        return redirect()->route('admin.category')
+            ->with('messages', 'Silindi')
+            ->with('type', 'success');
     }
 
 }
