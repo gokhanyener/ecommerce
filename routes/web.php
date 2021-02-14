@@ -51,7 +51,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
         Route::get('new', [AdminCategoryController::class, 'form'])->name('admin.category.new');
         Route::post('create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
         Route::get('edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
-        Route::post('update', [AdminCategoryController::class, 'update'])->name('admin.category.update');
+        Route::post('update/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
+        Route::get('delete/{id}', [AdminCategoryController::class, 'delete'])->name('admin.category.delete');
     });
 
 
