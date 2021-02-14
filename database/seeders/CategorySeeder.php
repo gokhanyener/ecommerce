@@ -23,7 +23,7 @@ class CategorySeeder extends Seeder
         DB::table("categories")->insert(['title' => 'Womens Clothing', 'slug' => 'women-clothing', 'up_id' => $id_clothes]);
         DB::table("categories")->insert(['title' => 'Mans Clothing', 'slug' => 'man-clothing', 'up_id' => $id_clothes]);
         $id_food = DB::table("categories")->insertGetId(['title' => 'FOOD AND BEVERAGES ', 'slug' => 'food-and-beverages']);
-        DB::table("categories")->insert(['title' => 'FOOD AND BEVERAGES ', 'slug' => 'food-and-beverages', 'up_id' => $id_food]);
+        DB::table("categories")->insert(['title' => 'FOODs ', 'slug' => 'food-and-bev', 'up_id' => $id_food]);
         DB::table("categories")->insert(['title' => 'HEALTHY & BEAUTY ', 'slug' => 'healthy-beauty']);
         DB::table("categories")->insert(['title' => 'SPORTS & LEISURE', 'slug' => 'sports-leisure']);
         DB::table("categories")->insert(['title' => 'BOOKS & ENTERTAINMENTS', 'slug' => 'books-entertainments']);
