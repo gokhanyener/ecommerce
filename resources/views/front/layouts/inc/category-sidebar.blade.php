@@ -2,7 +2,7 @@
 
     <ul id="sideManu" class="nav nav-tabs nav-stacked">
         @foreach($categories as $category)
-            @if($category->up_id === NULL  )
+            @if($category->up_id === 17  )
                 <li class="subMenu"><a href="{{route('category',$category->slug)}}">{{$category->title}}</a>
                     @endif
                     <ul>
