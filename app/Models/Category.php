@@ -16,6 +16,7 @@ class Category extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'category_product');
+
     }
 
     public function children()
@@ -25,8 +26,10 @@ class Category extends Model
 
     public function upCategory()
     {
-        return $this->belongsTo(Category::class, 'up_id')
-            ->withDefault(['title' => 'Base Category']);
+        return $this->belongsTo(Category::class, 'up_id', )
+
+        ->withDefault(['title' => 'baseee categoryy',]);
+
     }
 
 
