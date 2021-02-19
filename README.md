@@ -1,2 +1,2 @@
 Deleted category
-![Deleted-category](https://github.com/gokhanyener/e-commerce-project/blob/ecommerce-deniz/public/deleted-category.PNG?raw=true)
+![Deleted-category](https://raw.githubusercontent.com/gokhanyener/ecommerce/ecommerce-deniz/public/deleted-category.PNG)
