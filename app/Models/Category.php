@@ -26,7 +26,7 @@ class Category extends Model
     public function upCategory()
     {
         return $this->belongsTo(Category::class, 'up_id')
-            ->withDefault(['title' => 'Base Category']);
+            ->withDefault(['title' => 'Uncategorized']);
     }
 
 
