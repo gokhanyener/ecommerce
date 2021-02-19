@@ -23,7 +23,7 @@
     <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
-                <div class="row">
+           {{--     <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
                         <div class="card card-statistics">
                             <div class="card-body">
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
 
                 @yield('content')
 
@@ -109,6 +109,6 @@
 <!-- container-scroller -->
 
 @include('admin.layouts.inc.footer-script')
-
+@yield('footer')
 </body>
 </html>

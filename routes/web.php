@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\AuthController;
+
+//use App\Http\Controllers\admin\AuthController as AdminController;
 use App\Http\Controllers\front\CategoryController;
+use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\front\HomePageController;
 use App\Http\Controllers\front\ProductController;
 use App\Mail\UserRegisterMail;
@@ -30,16 +34,33 @@ Route::match(['post', 'get'], 'login', [AuthController::class, 'login'])->name('
 
 
 Route::view('/basket', 'front.basket')->name('basket');
-//Route::view('/login', 'front.auth.login')->name('login');
-
 Route::view('/contact', 'front.contact')->name('contact');
 
 
 /*Route::view('/admin/dashboard','admin.dashboard')->name('admin.dashboard');
 Route::view('/admin/category','admin.category')->name('admin.category');*/
 
-Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category');
+Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
+    // Route::get('login',[AdminController::class,'login']);
+    Route::match(['post', 'get'], 'login', [AdminController::class, 'login'])->name('admin.login');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    /* ->middleware('admin');;*/
+
+    Route::group(['prefix' => 'categories'], function () {
+        Route::match(['post', 'get'], '/', [AdminCategoryController::class, 'index'])->name('admin.category');
+        Route::get('new', [AdminCategoryController::class, 'form'])->name('admin.category.new');
+        Route::post('create', [AdminCategoryController::class, 'create'])->name('admin.category.create');
+        Route::get('edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::post('update/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
+        Route::get('delete/{id}', [AdminCategoryController::class, 'delete'])->name('admin.category.delete');
+    });
+
+
+});
+
+
+
+//Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category');
 /*Route::get('/test-mail', function () {
     return new UserRegisterMail();
 });*/
