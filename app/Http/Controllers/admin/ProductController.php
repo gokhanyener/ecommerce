@@ -41,9 +41,9 @@ class ProductController extends Controller
     {
 
         //  $data = request()->only('title','slug','up_id');
-        //   $categories = Category::whereNull('up_id')->get();
+       $categories = Category::all();
 
-        return view('admin.product.add');
+        return view('admin.product.add',compact('categories'));
 
     }
 
@@ -65,13 +65,23 @@ class ProductController extends Controller
              if (request()->filled('up_id')) {
                  $up_id = request()->up_id;
              }*/
-        Product::create([
+        $product = Product::create([
             'title' => Str::title(request()->title),
             'slug' => Str::slug(request()->slug),
             'description' => request()->description,
             'price' => request()->price,
             /*     'up_id' => $up_id*/
         ]);
+
+        $product->productDetail()->create([
+            'featured_product' => request()->featured_product,
+            'slider_product' => request()->slider_product,
+            'latest_product' => request()->latest_product,
+            'opportunity_product' => request()->opportunity_product,
+        ]);
+
+        $product->categories()->attach(request()->up_id);
+
 
         return redirect()
             ->route('admin.product')
@@ -82,12 +92,11 @@ class ProductController extends Controller
     public function edit($id)
     {
 
-        //$list =  Category::whereId($id)->firstOrFail();
-        //return   $list =  Category::findOrFail($id);
-        //  $categories = Category::whereNull('up_id')->get();
-        $list = Product::findOrFail($id);
+        $list = Product::with('categories')->whereId($id)->first();
+        $selectedCategory = $list->categories->pluck('id')->toArray();
+        $categories = Category::all();
 
-        return view('admin.product.edit', compact('list'));
+        return view('admin.product.edit', compact('list','categories','selectedCategory'));
 
     }
 
@@ -117,18 +126,27 @@ class ProductController extends Controller
         }
         $this->validate(request(), $data);
 
-        $item = Product::where('id', $id)->firstOrFail();
+        $product = Product::where('id', $id)->firstOrFail();
         /*      $up_id = null;
               if (request()->filled('up_id')) {
                   $up_id = request()->up_id;
               }*/
-        $item->update([
+        $product->update([
             'title' => Str::title(request()->title),
             'slug' => Str::slug(request()->slug),
             'description' => request()->description,
             'price' => request()->price,
             /*     'up_id' => $up_id*/
         ]);
+
+        $product->productDetail()->update([
+            'featured_product' => request()->featured_product,
+            'slider_product' => request()->slider_product,
+            'latest_product' => request()->latest_product,
+            'opportunity_product' => request()->opportunity_product,
+        ]);
+
+        $product->categories()->sync(request()->up_id);
 
         return redirect()->route('admin.product')
             ->with('messages', 'Güncellendi')
@@ -141,9 +159,11 @@ class ProductController extends Controller
 
         //  Category::destroy($id);
         $product = Product::findOrFail($id);
-   /*     $category->products()->detach();
-        $category->delete();*/
+
+        /*     $category->products()->detach();
+             $category->delete();*/
         $product->delete();
+        $product->productDetail()->delete();
 
         return redirect()->route('admin.product')
             ->with('messages', 'Silindi')

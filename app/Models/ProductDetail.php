@@ -10,6 +10,8 @@ class ProductDetail extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * @return BelongsTo
      */

@@ -56,20 +56,68 @@
                                                        id="ex" placeholder="{{trans('global.product.price')}}"
                                                        value="{{old('slug',$list->price)}}">
                                             </div>
-                                            {{--                           <div class="form-group">
-                                                                           <label for="exampleSelectPrimary">Categories</label>
-                                                                           <select name="up_id" class="form-control border-primary"
-                                                                                   id="exampleSelectPrimary">
-                                                                               <option value="">Base Category</option>
-                                                                               @foreach($categories as $category)
-                                                                                   <option value="{{$category->id}}"
-                                                                                   @if($category->id === $list->up_id)
-                                                                                       selected
-                                                                                   @endif
-                                                                                   >{{$category->title}}</option>
-                                                                               @endforeach
-                                                                           </select>
-                                                                       </div>--}}
+
+                                            <div class="form-group">
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <input type="hidden" name="featured_product" value="0">
+                                                        <input type="checkbox" class="form-check-input"
+                                                               name="featured_product"
+                                                               id="optionsRadios1" value="1"
+                                                            {{old('featured_product',$list->productDetail->featured_product) ? 'checked':'' }}
+                                                        >
+                                                        {{trans('global.product.featured')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+
+                                                        <input type="hidden" name="slider_product" value="0">
+
+                                                        <input type="checkbox" class="form-check-input"
+                                                               name="slider_product"
+                                                               id="optionsRadios1" value="1"
+                                                            {{old('slider_product',$list->productDetail->slider_product) ? 'checked':'' }}>
+                                                        {{trans('global.product.slider')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <input type="hidden" name="latest_product" value="0">
+                                                        <input type="checkbox" class="form-check-input"
+                                                               name="latest_product"
+                                                               id="optionsRadios1" value="1"
+                                                            {{old('latest_product',$list->productDetail->latest_product) ? 'checked':'' }}>
+                                                        {{trans('global.product.latest')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <input type="hidden" name="opportunity_product" value="0">
+                                                        <input type="checkbox" class="form-check-input"
+                                                               name="opportunity_product"
+                                                               id="optionsRadios1" value="1"
+                                                            {{old('opportunity_product',$list->productDetail->opportunity_product) ? 'checked':'' }}>
+                                                        {{trans('global.product.opportunity')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{trans('global.category.title')}}</label>
+                                                <select name="up_id[]" class="js-example-basic-multiple"
+                                                        multiple="multiple" style="width:100%">
+                                                    <option value="">{{trans('global.product.base')}}</option>
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->id}}"
+                                                            {{collect($selectedCategory)->contains($category->id)  ? 'selected' : ''}}
+                                                        >{{$category->title}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             {{--                 <input type="hidden" name="id" value="{{$list->id}}">--}}
                                             <button type="submit"
                                                     class="btn btn-success mr-2">{{trans('global.update')}}</button>
@@ -86,6 +134,10 @@
         </div>
     </div>
 
+@endsection
+
+@section('footer')
+    <script src="/admin/js/select2.js"></script>
 @endsection
 
 
