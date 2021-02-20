@@ -7,11 +7,16 @@ return [
     'description' => 'Açıklama',
     'name' => 'Adı',
     'slug' => 'Slug',
-    'new'=>'Yeni',
+    'new' => 'Yeni',
+    'update' => 'Güncelle',
+    'submit' => 'Ekle',
+    'cancel' => 'İptal Et',
+    'names' => 'Hoşgeldin :attr',
     'product' => [
         'title_singular' => 'Ürün',
         'title' => 'Ürünler',
-        'price' => 'Fiyat'
+        'price' => 'Fiyat',
+        'base' => 'Ana Kategori'
     ],
     'category' => [
 
