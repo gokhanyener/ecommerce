@@ -35,9 +35,9 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th class="sortStyle">Title<i class="mdi mdi-chevron-down"></i></th>
-                                    <th class="sortStyle">Slug<i class="mdi mdi-chevron-down"></i></th>
-                                    <th class="sortStyle">Base Category<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle">{{trans('global.product.title_singular')}}<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle">{{trans('global.slug')}}<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle">{{trans('global.product.base')}}<i class="mdi mdi-chevron-down"></i></th>
                                     <th class="sortStyle float-right">Action<i class="mdi mdi-chevron-down"></i></th>
                                 </tr>
                                 </thead>
@@ -48,13 +48,13 @@
                                         <td>{{$key +1 }}</td>
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->slug}}</td>
-                                        <td>{{$item->upCategory->title}}</td>
+                                        <td>{{--{{$item->upCategory->title}}--}}</td>
                                         <td class="float-right">
 
-                                            <a href="{{route('admin.category.edit',$item->id)}}" type="button"
+                                            <a href="{{route('admin.product.edit',$item->id)}}" type="button"
                                                class="btn btn-outline-primary btn-fw">
                                                 <i class="mdi mdi-file-document"></i>Edit</a>
-                                            <a href="{{route('admin.category.delete',$item->id)}}" type="button"
+                                            <a href="{{route('admin.product.delete',$item->id)}}" type="button"
                                                class="btn btn-sm btn-outline-danger btn-fw">
                                                 <i class="mdi mdi-alert-outline"></i>Delete</a>
                                         </td>

@@ -51,6 +51,9 @@
                                                 <input type="text" name="price" class="form-control"
                                                        id="ex" placeholder="{{trans('global.product.price')}}">
                                             </div>
+
+
+
                              {{--               <div class="form-group">
                                                 <label for="exampleSelectPrimary">Categories</label>
                                                 <select name="up_id" class="form-control border-primary"
