@@ -6,6 +6,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use function React\Promise\all;
 
@@ -23,7 +24,7 @@ class CategoryController extends Controller
             request()->flash();
             $search = request()->search;
 
-            $list = Category::with('upCategory')
+            $list = Product::with('upCategory')
                 ->where('title', 'like', "%$search%")
                 ->orderByDesc('id')
                 ->paginate(5)
@@ -31,20 +32,20 @@ class CategoryController extends Controller
 
 
         } else {
-            $list = Category::with('upCategory')
+            $list = Product::with('upCategory')
                 ->orderByDesc('id')->paginate(5);
         }
        // dd($list);
-        return view('admin.category.category', compact('list'));
+        return view('admin.product.product', compact('list'));
     }
 
     public function form()
     {
 
         //  $data = request()->only('title','slug','up_id');
-        $categories = Category::whereNull('up_id')->get();
+        $products = Product::whereNull('up_id')->get();
 
-        return view('admin.category.add', compact('categories'));
+        return view('admin.product.add', compact('products'));
 
     }
 
@@ -56,7 +57,7 @@ class CategoryController extends Controller
 
         $this->validate(request(), [
             'title' => 'required',
-            'slug' => 'nullable|unique:categories,slug',
+            'slug' => 'nullable|unique:products,slug',
         ]);
 
         //   dd(request()->all());
@@ -64,14 +65,14 @@ class CategoryController extends Controller
         if (request()->filled('up_id')) {
             $up_id = request()->up_id;
         }
-        Category::create([
+        Product::create([
             'title' => Str::title(request()->title),
             'slug' => Str::slug(request()->slug),
             'up_id' => $up_id
         ]);
 
         return redirect()
-            ->route('admin.category')
+            ->route('admin.product')
             ->with('messages', 'Kaydedildi')
             ->with('type', 'success');
     }
@@ -81,10 +82,10 @@ class CategoryController extends Controller
 
         //$list =  Category::whereId($id)->firstOrFail();
         //return   $list =  Category::findOrFail($id);
-        $categories = Category::whereNull('up_id')->get();
-        $list = Category::where('id', $id)->first();
+        $products = Product::whereNull('up_id')->get();
+        $list = Product::where('id', $id)->first();
 
-        return view('admin.category.edit', compact('list', 'categories'));
+        return view('admin.product.edit', compact('list', 'products'));
 
     }
 
@@ -104,13 +105,13 @@ class CategoryController extends Controller
             }
             $data = [
                 'title' => 'required',
-                'slug' => 'unique:categories,slug',
+                'slug' => 'unique:products,slug',
             ];
 
         }
         $this->validate(request(), $data);
 
-        $item = Category::where('id', $id)->firstOrFail();
+        $item = Product::where('id', $id)->firstOrFail();
         $up_id = null;
         if (request()->filled('up_id')) {
             $up_id = request()->up_id;
@@ -135,7 +136,7 @@ class CategoryController extends Controller
         $category->products()->detach();
         $category->delete();
         while(0==0){
-        $categories = Category::where('up_id')->get();
+        $products = Category::where('up_id')->get();
         $item = Category::where('up_id', $id)->firstorFail();
         $up_id = $id;
         if (request()->filled('up_id')) {
