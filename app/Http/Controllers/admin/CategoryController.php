@@ -21,6 +21,7 @@ class CategoryController extends Controller
         if (request()->filled('search')) {
             request()->flash();
             $search = request()->search;
+
             $list = Category::with('upCategory')
                 ->where('title', 'like', "%$search%")
                 ->orderByDesc('id')

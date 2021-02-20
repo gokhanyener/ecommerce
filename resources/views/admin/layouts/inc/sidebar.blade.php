@@ -30,5 +30,13 @@
 
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.product')}}"
+               aria-controls="page-layouts"> <img class="menu-icon" src="/admin/images/menu_icons/03.png"
+                                                  alt="menu icon"> <span
+                    class="menu-title">Products</span></a>
+
+        </li>
+
     </ul>
 </nav>
