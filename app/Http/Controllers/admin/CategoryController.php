@@ -7,6 +7,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use function React\Promise\all;
 
 class CategoryController extends Controller
 {
@@ -133,6 +134,17 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->products()->detach();
         $category->delete();
+        while(0==0){
+        $categories = Category::where('up_id')->get();
+        $item = Category::where('up_id', $id)->firstorFail();
+        $up_id = $id;
+        if (request()->filled('up_id')) {
+            $up_id = request()->id;
+        }
+        $item->update([
+            'up_id' => 0
+        ]);
+        }
 
         return redirect()->route('admin.category')
             ->with('messages', 'Silindi')
