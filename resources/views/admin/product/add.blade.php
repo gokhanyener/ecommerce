@@ -52,18 +52,60 @@
                                                        id="ex" placeholder="{{trans('global.product.price')}}">
                                             </div>
 
+                                            <div class="form-group">
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <input type="hidden" name="featured_product" value="0">
+                                                        <input type="radio" class="form-check-input"
+                                                               name="featured_product"
+                                                               id="optionsRadios1" value="1">
+                                                        {{trans('global.product.featured')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+
+                                                        <input type="hidden" name="slider_product" value="0">
+
+                                                        <input type="radio" class="form-check-input"
+                                                               name="slider_product"
+                                                               id="optionsRadios1" value="1">
+                                                        {{trans('global.product.slider')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <input type="hidden" name="latest_product" value="0">
+                                                        <input type="radio" class="form-check-input"
+                                                               name="latest_product"
+                                                               id="optionsRadios1" value="1">
+                                                        {{trans('global.product.latest')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
+
+                                                <div class="form-radio">
+                                                    <label class="form-check-label">
+                                                        <input type="hidden" name="opportunity_product" value="0">
+                                                        <input type="radio" class="form-check-input"
+                                                               name="opportunity_product"
+                                                               id="optionsRadios1" value="1">
+                                                        {{trans('global.product.opportunity')}}
+                                                        <i class="input-helper"></i></label>
+                                                </div>
 
 
-                             {{--               <div class="form-group">
-                                                <label for="exampleSelectPrimary">Categories</label>
-                                                <select name="up_id" class="form-control border-primary"
-                                                        id="exampleSelectPrimary">
-                                                    <option value="">Base Category</option>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>{{trans('global.category.title')}}</label>
+                                                <select  name="up_id[]" class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+                                                    <option value="">{{trans('global.product.base')}}</option>
                                                     @foreach($categories as $category)
                                                         <option value="{{$category->id}}">{{$category->title}}</option>
                                                     @endforeach
                                                 </select>
-                                            </div>--}}
+                                            </div>
 
                                             <button type="submit" class="btn btn-success mr-2">Submit</button>
                                             <button class="btn btn-light">Cancel</button>
@@ -80,5 +122,9 @@
     </div>
 
 @endsection
+
+@section('footer')
+    <script src="/admin/js/select2.js"></script>
+    @endsection
 
 

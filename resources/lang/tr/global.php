@@ -16,9 +16,13 @@ return [
         'title_singular' => 'Ürün',
         'title' => 'Ürünler',
         'price' => 'Fiyat',
-        'base' => 'Ana Kategori'
+        'base' => 'Ana Kategori',
+        'slider' => 'Slider-Banner',
+        'latest' => 'En güncel ürünler',
+        'featured' => 'Öne çıkan ürünler',
+        'opportunity' => 'Fırsat Ürünleri'
     ],
     'category' => [
-
+        'title' => 'Kategori',
     ]
 ];
