@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 //use App\Http\Controllers\admin\AuthController as AdminController;
 use App\Http\Controllers\front\CategoryController;
 use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\admin\ProductController as AdminProductController;
 use App\Http\Controllers\front\HomePageController;
 use App\Http\Controllers\front\ProductController;
 use App\Mail\UserRegisterMail;
@@ -53,6 +54,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
         Route::get('edit/{id}', [AdminCategoryController::class, 'edit'])->name('admin.category.edit');
         Route::post('update/{id}', [AdminCategoryController::class, 'update'])->name('admin.category.update');
         Route::get('delete/{id}', [AdminCategoryController::class, 'delete'])->name('admin.category.delete');
+    });
+
+    Route::group(['prefix' => 'products'], function () {
+        Route::match(['post', 'get'], '/', [AdminProductController::class, 'index'])->name('admin.product');
+        Route::get('new', [AdminProductController::class, 'form'])->name('admin.product.new');
+        Route::post('create', [AdminProductController::class, 'create'])->name('admin.product.create');
+        Route::get('edit/{id}', [AdminProductController::class, 'edit'])->name('admin.product.edit');
+        Route::post('update/{id}', [AdminProductController::class, 'update'])->name('admin.product.update');
+        Route::get('delete/{id}', [AdminProductController::class, 'delete'])->name('admin.product.delete');
     });
 
 
