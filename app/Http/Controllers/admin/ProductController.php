@@ -23,17 +23,17 @@ class ProductController extends Controller
             request()->flash();
             $search = request()->search;
 
-            $list = Product::where('title', 'like', "%$search%")
+            $list = Product::with('productDetail')->where('title', 'like', "%$search%")
                 ->orderByDesc('id')
                 ->paginate(5)
                 ->appends('search', $search);
 
 
         } else {
-            $list = Product::orderByDesc('id')
+            $list = Product::with('productDetail')->orderByDesc('id')
                 ->paginate(5);
         }
-        // dd($list);
+        //   dd($list);
         return view('admin.product.product', compact('list'));
     }
 
@@ -41,9 +41,9 @@ class ProductController extends Controller
     {
 
         //  $data = request()->only('title','slug','up_id');
-       $categories = Category::all();
+        $categories = Category::all();
 
-        return view('admin.product.add',compact('categories'));
+        return view('admin.product.add', compact('categories'));
 
     }
 
@@ -61,16 +61,33 @@ class ProductController extends Controller
         ]);
 
 
-        /*     $up_id = null;
-             if (request()->filled('up_id')) {
-                 $up_id = request()->up_id;
-             }*/
+        if (request()->hasFile('image')) {
+
+            $this->validate(request(), [
+                'image' => 'required|mimes:jpg,png,gif,svg,jpeg|max:4096'
+            ]);
+
+            $image = request()->file('image');
+            // $image = request()->image;
+            $originalName = $image->getClientOriginalName();
+            // explode('.',$originalName);
+            $extension = Str::of($originalName)->explode('.');
+            $name = $extension->shift();
+            $fileName = $name . '-' . time() . '.' . $image->extension();
+            //  $fileName = $image->hashName();
+
+            if ($image->isValid()) {
+                // $image->move('uploads/products', $fileName);
+                $image->move(public_path('uploads/products'), $fileName);
+            }
+
+        }
+
         $product = Product::create([
             'title' => Str::title(request()->title),
             'slug' => Str::slug(request()->slug),
             'description' => request()->description,
             'price' => request()->price,
-            /*     'up_id' => $up_id*/
         ]);
 
         $product->productDetail()->create([
@@ -78,6 +95,7 @@ class ProductController extends Controller
             'slider_product' => request()->slider_product,
             'latest_product' => request()->latest_product,
             'opportunity_product' => request()->opportunity_product,
+            'image' => 'uploads/products/' . $fileName
         ]);
 
         $product->categories()->attach(request()->up_id);
@@ -96,14 +114,46 @@ class ProductController extends Controller
         $selectedCategory = $list->categories->pluck('id')->toArray();
         $categories = Category::all();
 
-        return view('admin.product.edit', compact('list','categories','selectedCategory'));
+        return view('admin.product.edit', compact('list', 'categories', 'selectedCategory'));
 
     }
 
     public function update($id)
     {
 
+
         request()->merge(['slug' => Str::slug(request()->slug)]);
+
+        if (request()->hasFile('image')) {
+
+            $this->validate(request(), [
+                'image' => 'required|mimes:jpg,png,gif,svg,jpeg|max:4096'
+            ]);
+
+            $image = request()->file('image');
+            // $image = request()->image;
+            $originalName = $image->getClientOriginalName();
+            // explode('.',$originalName);
+            $extension = Str::of($originalName)->explode('.');
+            $name = $extension->shift();
+            $fileName = $name . '-' . time() . '.' . $image->extension();
+            $filePath = 'uploads/products/' . $fileName;
+            //  $fileName = $image->hashName();
+
+            if ($image->isValid()) {
+                // $image->move('uploads/products', $fileName);
+                $image->move(public_path('uploads/products'), $fileName);
+            }
+
+            $path = request()->old_image;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+
+        } else {
+            $filePath = request()->old_image;
+        }
+
 
         if (request()->slug === request()->old_slug) {
             $data = [
@@ -127,16 +177,12 @@ class ProductController extends Controller
         $this->validate(request(), $data);
 
         $product = Product::where('id', $id)->firstOrFail();
-        /*      $up_id = null;
-              if (request()->filled('up_id')) {
-                  $up_id = request()->up_id;
-              }*/
+
         $product->update([
             'title' => Str::title(request()->title),
             'slug' => Str::slug(request()->slug),
             'description' => request()->description,
             'price' => request()->price,
-            /*     'up_id' => $up_id*/
         ]);
 
         $product->productDetail()->update([
@@ -144,6 +190,7 @@ class ProductController extends Controller
             'slider_product' => request()->slider_product,
             'latest_product' => request()->latest_product,
             'opportunity_product' => request()->opportunity_product,
+            'image' => $filePath
         ]);
 
         $product->categories()->sync(request()->up_id);

@@ -12,6 +12,9 @@ return [
     'submit' => 'Ekle',
     'cancel' => 'İptal Et',
     'names' => 'Hoşgeldin :attr',
+    'upload' => ':attr Yükle',
+    'uploads' => 'Yükle',
+    'image' => 'Resim',
     'product' => [
         'title_singular' => 'Ürün',
         'title' => 'Ürünler',

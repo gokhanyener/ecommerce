@@ -38,6 +38,7 @@
                                     <th class="sortStyle">{{trans('global.product.title_singular')}}<i class="mdi mdi-chevron-down"></i></th>
                                     <th class="sortStyle">{{trans('global.slug')}}<i class="mdi mdi-chevron-down"></i></th>
                                     <th class="sortStyle">{{trans('global.product.base')}}<i class="mdi mdi-chevron-down"></i></th>
+                                    <th class="sortStyle">{{trans('global.image')}}<i class="mdi mdi-chevron-down"></i></th>
                                     <th class="sortStyle float-right">Action<i class="mdi mdi-chevron-down"></i></th>
                                 </tr>
                                 </thead>
@@ -49,6 +50,14 @@
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->slug}}</td>
                                         <td>{{--{{$item->upCategory->title}}--}}</td>
+                                        <td>
+                                           @if ($item->productDetail->image)
+                                                <img src="{{asset($item->productDetail->image)}}"  alt="">
+                                            @else
+                                                <img src="https://via.placeholder.com/100" alt="">
+                                           @endif
+
+                                        </td>
                                         <td class="float-right">
 
                                             <a href="{{route('admin.product.edit',$item->id)}}" type="button"
