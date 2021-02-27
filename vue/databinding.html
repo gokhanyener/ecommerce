@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <style>
-        *{
+        * {
             font-weight: bold;
         }
     </style>
@@ -23,8 +23,18 @@
     <hr>
     <p>{{mesaj}}</p>
     <div>
-        <label >Mesaj</label>
+        <label>Mesaj</label>
         <input type="text" v-model="mesaj" class="form-control">
+    </div>
+
+    <div>
+        <label>Fiyat</label>
+        <textarea v-model="message" class="form-control" maxlength="20"></textarea>
+        <span class="float-right">{{20 - message.length}}</span>
+        <hr>
+        <input type="text" v-model.number="fiyat" class="form-control" maxlength="20">
+        <span class="badge badge-warning">    Kdv Tutarı : {{fiyat * 18 / 100}}</span>
+
     </div>
 
 </div>
@@ -32,8 +42,8 @@
 <script src="assets/js/vue.js"></script>
 <script>
 
-/*    document.getElementById('test').innerHTML = '<h1>test</h1>';
-    document.getElementById('test').innerText = 'test';*/
+    /*    document.getElementById('test').innerHTML = '<h1>test</h1>';
+        document.getElementById('test').innerText = 'test';*/
 
     const app = new Vue({
         el: '#app',
@@ -42,6 +52,8 @@
             name: 'Merhaba Silicon Ailesi',
             mesaj: 'Merhaba',
             lastname: '<h2>Academy</h2>',
+            fiyat: '',
+            message: ''
 
         },
     });
