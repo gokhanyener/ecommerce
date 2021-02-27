@@ -9,8 +9,7 @@
 <body class="p-5">
 
 <div id="app">
-    {{name}}
-    {{sayi}}
+
 </div>
 
 <script src="assets/js/vue.js"></script>
@@ -21,21 +20,8 @@
         name: 'Silicon made academy',
         data: {
             name: 'Merhaba Silicon Ailesi',
-            sayi: 10,
         },
-        created() {
-            console.log('instance oluşturuldu')
-        },
-        mounted() {
-            console.log('Dom a eklendi.');
-            this.sayi = Math.floor(Math.random() * 100);
-        },
-        destroyed(){
-            console.log('Instance silindi')
-        }
     });
-
-    app.$destroy();
 
 </script>
 </body>
