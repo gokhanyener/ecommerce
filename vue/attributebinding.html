@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="p-5">
+
+<div id="app">
+    <a v-bind:href="webLink" v-bind:title="title">{{siteName}}</a><br>
+    <a :href="webLink" v-bind:title="title">{{siteName}}</a><br>
+    <hr>
+    <div :id="'ders-'+id">Ders id : {{id}}</div>
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            webLink: 'http://google.com',
+            siteName: 'Google',
+            title: 'Google web sitesine gider',
+            id: 11
+        },
+    });
+
+</script>
+</body>
+</html>
