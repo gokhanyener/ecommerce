@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+
+    <div class="alert alert-success">
+        {{message}}
+    </div>
+    <button class="btn btn-primary" v-on:click="changeMessage">Değiştir</button>
+    <button class="btn btn-danger" @click="baybay">Bay Bay Mesajı</button>
+    <!--   <input type="text" v-model="message">-->
+    <hr>
+    <br>
+    <div class="form-group row">
+        <label for="email">Email</label>
+        <div class="col-6">
+            <input type="text" id="email" class="form-control" v-model="email"
+                   v-on:keypress.enter="emailRegister">
+            <hr>
+<!--            <input type="text"  class="form-control" v-model="email"
+                   v-on:blur="emailRegister"> &lt;!&ndash;onblur&ndash;&gt;
+       &lt;!&ndash;     <input type="text"  class="form-control" v-model="email"
+                   v-on:focus="emailRegister"> &lt;!&ndash;onfocus&ndash;&gt;&ndash;&gt;
+            hr
+            <input type="text"  class="form-control" v-model="email"
+                   v-on:keydown="emailRegister">-->
+            <hr>
+            {{email}}
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            message: 'Merhaba Silicon Ailesi',
+            email: ''
+        },
+        methods: {
+
+            changeMessage() {
+                this.message = 'Merhaba yazısı değiştirildi'
+            },
+            baybay() {
+                this.message = 'Bay Bay';
+            },
+            emailRegister() {
+                if (this.email !== '') {
+                    this.message = 'Email adresi kaydedildi';
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
