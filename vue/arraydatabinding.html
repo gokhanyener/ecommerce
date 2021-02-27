@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+    {{users}}
+    <h1>Users</h1>
+    <table class="table table-bordered table-hover">
+        <tr class="bg-success text-white">
+            <th>id</th>
+            <th>Name</th>
+            <th>Role</th>
+        </tr>
+        <tr v-for="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>
+                <span :class="{'badge badge-success':user.role === 'user','badge badge-warning':user.role==='admin'}">
+                    {{user.role}}
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Merhaba Silicon Ailesi',
+            /*         users: ['burak', 'semih', 'hasan', 'beyza', 'fatih'],*/
+            users: [
+                {
+                    id: 1,
+                    name: 'gokhan',
+                    role: 'admin'
+                },
+                {
+                    id: 2,
+                    name: 'burak',
+                    role: 'user'
+                },
+                {
+                    id: 3,
+                    name: 'semih',
+                    role: 'admin'
+                },
+                {
+                    id: 4,
+                    name: 'hasan',
+                    role: 'user'
+                },
+                {
+                    id: 5,
+                    name: 'beyza',
+                    role: 'admin'
+                },
+                {
+                    id: 6,
+                    name: 'fatih',
+                    role: 'user'
+                }
+            ]
+        },
+    });
+
+</script>
+</body>
+</html>
