@@ -25,6 +25,7 @@
                             <a href="{{route('admin.product.new')}}" type="submit"
                                class="btn btn-danger ml-3 float-right">{{trans('global.add')}}</a>
                         </div>
+                        <br>
 
                     </div>
 

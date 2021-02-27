@@ -15,8 +15,6 @@
                         </div>
 
                     </div>
-
-
                     <div class="row">
                         <div class="table-sorter-wrapper col-lg-12 table-responsive">
 
