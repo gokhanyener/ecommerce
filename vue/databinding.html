@@ -33,7 +33,13 @@
         <span class="float-right">{{20 - message.length}}</span>
         <hr>
         <input type="text" v-model.number="fiyat" class="form-control" maxlength="20">
-        <span class="badge badge-warning">    Kdv Tutarı : {{fiyat * 18 / 100}}</span>
+
+        <span class="badge badge-warning">    Kdv Tutarı : {{fiyat * 18 / 100}}</span><br>
+
+        <span class="badge badge-danger" v-once>    Kdv Tutarı : {{fiyat * 18 / 100}}</span><br>
+
+
+      <span class="badge badge-info">  {{(fiyat * 18 / 100) < 5 ? "Kdv Düşük" : "Kdv Yüksek"}}</span>
 
     </div>
 
@@ -52,9 +58,8 @@
             name: 'Merhaba Silicon Ailesi',
             mesaj: 'Merhaba',
             lastname: '<h2>Academy</h2>',
-            fiyat: '',
+            fiyat: 50,
             message: ''
-
         },
     });
 
