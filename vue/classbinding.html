@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+    <div :class="selectionClass">Seçilen class: '{{selectionClass}}'</div>
+    <hr>
+    <!--    <link rel="stylesheet" :href="'assets/css/'+css">-->
+    <select v-model="selectionClass" class="form-control">
+        <option>alert alert-warning</option>
+        <option>alert alert-info</option>
+        <option>alert alert-primary</option>
+        <option>alert alert-danger</option>
+        <option>alert alert-success</option>
+    </select>
+    <br>
+    <select v-model="css" class="form-control">
+        <option>app.css</option>
+        <option>map.css</option>
+    </select>
+    <hr>
+    <div :class="[bgWarning,textColor]">Test</div>
+    <hr>
+
+    <div class="form-group row">
+        <label for="name">İsim </label>
+        <div class="col-6">
+            <input type="text" id="name" v-model="user.name"
+                   :class="{'form-control is-valid':user.name,'form-control is-invalid':!user.name}"
+            >
+            <br>
+            {{user.name}}
+        </div>
+
+        <div class="col-6">
+            <span
+                :class="{'badge badge-success':user.role === 'user','badge badge-warning':user.role==='admin'}">{{user.role}}</span>
+        </div>
+
+        <div class="col-6" :style="styleCss">
+            Merhaba
+        </div>
+
+    </div>
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+            el: '#app',
+            name: 'Silicon made academy',
+            data: {
+                selectionClass: 'alert alert-warning',
+                bgSuccess: 'bg-success',
+                bgWarning: 'bg-warning card',
+                textColor: 'text-success',
+                css: 'app.css',
+                styleCss: {
+                    color: 'red',
+                    fontSize: '22px'
+                },
+                user: {
+                    id: 1,
+                    name: 'gokhan',
+                    role: 'user'
+                }
+            },
+        })
+    ;
+
+</script>
+</body>
+</html>
