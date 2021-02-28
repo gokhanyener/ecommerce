@@ -73,7 +73,14 @@
                 <td>{{user.name}}</td>
                 <td>{{user.role}}</td>
                 <td class="text-center">
-                    <button class="btn btn-danger btn-sm" v-on:click="userDelete(index)"><i class="fa fa-trash"></i></button>
+                    <button class="btn btn-danger btn-sm" v-on:click="userDelete(index)"><i class="fa fa-trash"></i>
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" v-on:click="userDelete1(user.id)"><i
+                        class="fa fa-trash"></i>
+                    </button>
+                    <button class="btn btn-warning btn-sm" v-on:click="userEdit(user.id)"><i
+                        class="fa fa-pencil"></i>
+                    </button>
                 </td>
             </tr>
         </table>
@@ -117,28 +124,70 @@
                 }
             ]
         },
+        mounted() {
+            const count = JSON.parse(localStorage.getItem('users')).length;
+
+            if (count > 0) {
+                this.users = JSON.parse(localStorage.getItem('users'))
+            }
+
+        },
         methods: {
             addUser() {
+                this.activeUser = {};
                 $('#userModal').modal('show');
             },
             registerUser() {
-                if(this.activeUser.name !== undefined && this.activeUser.role !== undefined ){
-                    this.users.push({
-                        id: this.users.length + 1,
-                        name: this.activeUser.name,
-                        role: this.activeUser.role
-                    });
+
+                if (this.activeUser.name !== undefined && this.activeUser.role !== undefined) {
+
+                    if (this.activeUser.id > 0) { // edit area
+
+                        let user = this.users.find(resp => resp.id === this.activeUser.id);
+                        user.name = this.activeUser.name;
+                        user.role = this.activeUser.role;
+                        localStorage.setItem('users', JSON.stringify(this.users))
+
+                    } else { // add area
+                        this.users.push({
+                            id: this.users.length + 1,
+                            name: this.activeUser.name,
+                            role: this.activeUser.role
+                        });
+
+                        localStorage.setItem('users', JSON.stringify(this.users))
+                    }
+
                     this.activeUser = {};
                     $('#userModal').modal('hide');
-                }else{
+                } else {
                     this.error = 'Lütfen bilgilerinizi giriniz'
                 }
             },
-            userDelete(index){
-               const res =  confirm('Emin misiniz?')
-              if(res){
-                  this.users.splice(index, 1)
-              }
+            userDelete(index) {
+                const res = confirm('Emin misiniz?')
+                if (res) {
+                    this.users.splice(index, 1)
+                    localStorage.setItem('users', JSON.stringify(this.users))
+                }
+            },
+            userDelete1(id) {
+                const res = confirm('Emin misiniz?')
+                if (res) {
+                    const user = this.users.find(resp => resp.id === id);
+                    if (user) {
+                        this.users = this.users.filter(data => data.id !== user.id)
+                        localStorage.setItem('users', JSON.stringify(this.users))
+                    }
+                }
+            },
+            userEdit(id) {
+                this.activeUser = {};
+                const user = this.users.find(resp => resp.id === id);
+                this.activeUser.name = user.name;
+                this.activeUser.role = user.role;
+                this.activeUser.id = user.id;
+                $('#userModal').modal('show');
             }
         }
     });
