@@ -14,8 +14,17 @@
 <body class="p-5">
 <div class="container">
     <div id="app">
-        <button class="btn btn-danger" v-on:click="addUser"  data-toggle="modal" data-target="#exampleModal"> + Add User</button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-danger" v-on:click="addUser"> + Add User</button>
+            </div>
+            <div class="col-6 text-right"><span class="badge badge-warning">
+  User Total :     {{users.length}}</span>
+            </div>
+        </div>
+        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -44,7 +53,7 @@
             </div>
         </div>
         <br>
-        <table class="table table-bordered table-hover mt-3">
+        <table class="table table-bordered table-hover">
             <tr class="bg-primary text-white">
                 <th>Index</th>
                 <th>Id</th>
@@ -65,15 +74,7 @@
 <script src="../assets/js/vue.js"></script>
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever')
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-    })
-</script>
+
 <script>
 
     const app = new Vue({
@@ -106,7 +107,7 @@
         },
         methods: {
             addUser() {
-
+                $('#userModal').modal('show');
             }
         }
     });
