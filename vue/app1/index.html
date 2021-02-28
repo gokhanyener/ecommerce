@@ -134,6 +134,12 @@
                     this.error = 'Lütfen bilgilerinizi giriniz'
                 }
             },
+            userDelete(index){
+               const res =  confirm('Emin misiniz?')
+              if(res){
+                  this.users.splice(index, 1)
+              }
+            }
         }
     });
 
