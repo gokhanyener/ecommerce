@@ -20,26 +20,29 @@
     </div>
     <button class="btn btn-primary" v-on:click="changeMessage">Değiştir</button>
     <button class="btn btn-danger" @click="baybay">Bay Bay Mesajı</button>
+    <button class="btn btn-warning" @click="messageDelete">Mesajı Sil</button>
     <!--   <input type="text" v-model="message">-->
     <hr>
     <br>
-    <div class="form-group row">
-        <label for="email">Email</label>
-        <div class="col-6">
-            <input type="text" id="email" class="form-control" v-model="email"
-                   v-on:keypress.enter="emailRegister">
-            <hr>
-<!--            <input type="text"  class="form-control" v-model="email"
-                   v-on:blur="emailRegister"> &lt;!&ndash;onblur&ndash;&gt;
-       &lt;!&ndash;     <input type="text"  class="form-control" v-model="email"
-                   v-on:focus="emailRegister"> &lt;!&ndash;onfocus&ndash;&gt;&ndash;&gt;
-            hr
-            <input type="text"  class="form-control" v-model="email"
-                   v-on:keydown="emailRegister">-->
-            <hr>
-            {{email}}
+    <form @submit.prevent="true">
+        <div class="form-group row">
+            <label for="email">Email</label>
+            <div class="col-6">
+                <input type="text" id="email" class="form-control" v-model="email"
+                       v-on:keypress.enter="emailRegister">
+                <hr>
+                <!--            <input type="text"  class="form-control" v-model="email"
+                                   v-on:blur="emailRegister"> &lt;!&ndash;onblur&ndash;&gt;
+                       &lt;!&ndash;     <input type="text"  class="form-control" v-model="email"
+                                   v-on:focus="emailRegister"> &lt;!&ndash;onfocus&ndash;&gt;&ndash;&gt;
+                            hr
+                            <input type="text"  class="form-control" v-model="email"
+                                   v-on:keydown="emailRegister">-->
+                <hr>
+                {{email}}
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <script src="assets/js/vue.js"></script>
@@ -64,6 +67,12 @@
                 if (this.email !== '') {
                     this.message = 'Email adresi kaydedildi';
                 }
+            },
+            messageDelete() {
+                let tt = this;
+                setTimeout(function () {
+                    tt.message = '';
+                }, 1500)
             }
         }
     });
