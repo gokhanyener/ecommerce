@@ -189,6 +189,9 @@
                 this.activeUser.id = user.id;
                 $('#userModal').modal('show');
             }
+        },
+        destroy(){
+            localStorage.removeItem('users');
         }
     });
 

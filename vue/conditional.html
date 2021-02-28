@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+
+    <div class="alert alert-primary" v-if="isVisible">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto, at delectus dolores minus sunt?
+    </div>
+    <div class="alert alert-primary" v-show="isVisible">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto, at delectus dolores minus sunt?
+    </div>
+    <button class="btn btn-primary" v-on:click="showVisible">Show-Hide</button>
+    <!--   <input type="text" class="form-control" v-model="name">
+       <span>{{name.length}} karakter</span>-->
+    <select class="form-control" v-model="selected">
+        <option>User</option>
+        <option>Admin</option>
+    </select>
+
+    <div v-if="selected==='User'">
+        User alanı
+    </div>
+    <div v-else-if="selected==='Admin'">
+        Admin alanı
+    </div>
+    <div v-else>
+        Öylesine bir alanı
+    </div>
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Merhaba Silicon Ailesi',
+            isVisible: true,
+            selected: ''
+        },
+        methods: {
+            showVisible() {
+                this.isVisible = !this.isVisible;
+            },
+            toggleFunction() {
+
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
