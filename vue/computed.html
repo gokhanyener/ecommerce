@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app" class="container">
+
+    <div class="row">
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="list-group-item" v-for="user in users">{{user}}</li>
+            </ul>
+        </div>
+
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="list-group-item" v-for="user in filteredUsers">{{user}}</li>
+            </ul>
+        </div>
+
+        <div class="col-4">
+            {{name}} {{lastname}}
+            <br>
+            <h2>Computed alanı</h2>
+            {{nameLastName}}
+            {{nameLastName}}
+            {{nameLastName}}
+            <br>
+            <hr>
+            <h2>Methods Alanı</h2>
+            {{nameLastName3()}}
+            {{nameLastName3()}}
+            {{nameLastName3()}}
+            <hr>
+            <br>
+            {{nameLastName2}}
+            <br>
+            <label>Fiyat</label>
+            <input type="text" v-model="price" class="form-control">
+            {{kdv}}
+        </div>
+    </div>
+
+
+
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Gokhan',
+            lastname: 'Yener',
+            price: 100,
+            users: ['Eren', 'Furkan', 'Suleyman', 'Burak', 'Gokhan', 'Semih',]
+        },
+        methods: {
+            nameLastName3() {
+                console.log('Methods çalıştı')
+                return this.name + ' ' + this.lastname;
+            },
+        },
+        computed: {
+            nameLastName() {
+                console.log('Computed çalıştı')
+                return this.name + ' ' + this.lastname;
+            },
+            filteredUsers() {
+                return this.users.filter(data => data.startsWith('S'))
+            },
+            nameLastName2: {
+                get: function () {
+                    return this.name + ' ' + this.lastname;
+                },
+                set: function (value) {
+                    let items = value.split(' ');
+                    this.name = items[0];
+                    this.lastname = items[1];
+                }
+            },
+            kdv() {
+                return this.price * 18 / 100;
+            }
+        },
+
+
+    });
+
+</script>
+</body>
+</html>

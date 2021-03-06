@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+    <input type="text" v-model="price" class="form-control">
+    {{price}}
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Merhaba Silicon Ailesi',
+            price: ''
+        },
+        watch: {
+            price(value, oldValue) {
+                console.log('New Value : ', value, 'Old Value : ', oldValue)
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
