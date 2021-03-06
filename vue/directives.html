@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+    <div v-alert="'success'">{{name}}</div>
+    <div v-alert="'primary'">{{name}}</div>
+    <div v-alert="'danger'">{{name}}</div>
+    <input type="text" v-model="tarih" v-datetime="tarih" class="form-control">
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Merhaba Silicon Ailesi',
+            tarih: '2021-01-05 12:58:00'
+        },
+        directives: {
+            alert: function (el, binding) {
+                el.setAttribute('class', 'alert alert-' + binding.value)
+            },
+            datetime: function (el,bindings) {
+                el.value = new Date(bindings.value).toLocaleDateString();
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

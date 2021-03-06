@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+    <ul class="list-group">
+        <li class="list-group-item"> {{name }}</li>
+        <li class="list-group-item"> {{name | uppercase}}</li>
+        <li class="list-group-item"> {{name | kucukharf}}</li>
+        <li class="list-group-item"> {{name | revert}}</li>
+        <li class="list-group-item">
+            <input type="text" v-model.trim="title" class="form-control">
+            {{title}}
+        </li>
+    </ul>
+
+    <hr>
+
+</div>
+
+<script src="assets/js/vue.js"></script>
+<script>
+
+    Vue.filter('revert', function (val) {
+        return val.toString().split(' ').reverse().join(' ');
+    })
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Merhaba Silicon Ailesi',
+            title:'    Merhaba    '
+        },
+        filters: {
+            uppercase(val) {
+                return val.toString().toUpperCase();
+            },
+            kucukharf(val) {
+                return val.toString().toLowerCase();
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
