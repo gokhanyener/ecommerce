@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/toastr.min.css">
+    <style>
+        * {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="p-5">
+
+<div id="app">
+    <div class="container ">
+        <div class="row">
+            <div class="card col-6 bg-warning">
+                <div class="card-body ">
+                    <div class="card-header">
+                        User Register
+
+                        <div class="alert alert-danger" style="font-size: 12px" v-for="error in errors">
+                            {{error}}
+                        </div>
+
+                    </div>
+                    <form @submit.prevent="true" method="post">
+                        <div class="form-group">
+                            <label>Name Surname</label>
+                            <input type="text" v-model="form.name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" v-model="form.email" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" v-model="form.password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" v-model="form.confirm_password" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" @click="register()" class="btn btn-primary">Register</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/js/vue.js"></script>
+<script src="assets/js/jquery-2.2.4.min.js"></script>
+<script src="assets/js/toastr.min.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        name: 'Silicon made academy',
+        data: {
+            name: 'Merhaba Silicon Ailesi',
+            errors: [],
+            form: {
+                name: '',
+                email: '',
+                password: '',
+                confirm_password: '',
+            },
+        },
+        methods: {
+
+            register() {
+                this.errors = [];
+                if (!this.form.name) {
+                    this.errors.push('Lütfen ad soyad alanını giriniz')
+                }
+                if (!this.form.email) {
+                    this.errors.push('Lütfen email alanını giriniz')
+                }
+                if (!this.validEmail(this.form.email)) {
+                    this.errors.push('Geçerli bir email giriniz');
+                }
+                if (!this.form.password) {
+                    this.errors.push('Lütfen şifre alanını giriniz')
+                }
+                if (!this.form.confirm_password) {
+                    this.errors.push('Lütfen şifre doğrulama alanını giriniz')
+                }
+
+                if (this.form.password !== this.form.confirm_password) {
+                    this.errors.push('Lütfen şifre ve şifre doğrulama alanını kontrol ediniz')
+                }
+
+                if (this.errors.length > 0) {
+                    let message = 'Lütfen form datalarını kontrol ediniz';
+
+                    //   toastr.error(message)
+                    let msg = '';
+                    this.errors.forEach(data => {
+                        msg += '*' + data + '<br>';
+                    })
+                    toastr.error(msg)
+                } else {
+                    // backende gonderme
+                    toastr.success('Bilgiler Başarıyla kaydedildi.');
+                }
+
+                console.log(this.form)
+            },
+            validEmail: function (email) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
