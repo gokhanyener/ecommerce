@@ -1,0 +1,15 @@
+{
+    "classroom": {
+        "girls": [
+            {
+                "name": "sevgi",
+                "img": "url1"
+            },
+            {
+                "name": "canan",
+                "img": "url2"
+            }
+        ]
+
+    }
+}
