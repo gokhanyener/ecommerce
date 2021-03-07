@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ecommerce Cart</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        * {
+            font-weight: bold;
+
+        }
+    </style>
+</head>
+
+<body class="p-5">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <div id="app">
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="mb-4">Ürünler</h1>
+
+
+                    <div class="d-inline-block card card-item m-2" v-for="(product,index) in products" :key="index">
+                        <img v-bind:src="'images/'+ product.image" width="200" height="200" class="card-img-top"
+                            alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">{{product.name}}</h5>
+                            <p class="card-text">{{product.text}}</p>
+                            <div>
+                                <a v-for="rating in product.rating"><i class="fa fa-star text-warning"></i></a>
+                                <a v-for="rating in product.negRating"><i class="fa fa-star"></i></a>
+                                <a>{{product.comment}}</a>
+                            </div>
+                            <div class="text-center">
+                                <div><button class="btn btn-primary mt-4" v-on:click="addToCart(product)">Sepete
+                                        Ekle</button></div>
+                                <div class="badge badge-danger mt-2 p-2">{{product.price}} TL</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <h1 class="mb-4">Sepet</h1>
+                    <div>Sepetinizde {{quantityTotal}} ürün bulunmaktadır.</div>
+                    <table class="table table-bordered table-hover">
+                        <tr class="bg-primary text-white">
+
+                            <th>Ürün Kodu</th>
+                            <th>Ürün Adı</th>
+                            <th>Fiyat</th>
+                            <th>Adet</th>
+                            <th class="text-center">İşlem</th>
+                        </tr>
+                        <tr v-for="(prod,index) in cart" :key="index">
+
+                            <td>{{prod.id}}</td>
+                            <td>{{prod.name}}</td>
+                            <td>{{prod.price}} TL</td>
+                            <td><button class="btn btn-success btn-sm" @click="removeOne(prod)">-</button>
+                                <input type="text" class="w-50" v-model="prod.quantity">
+                                <button class="btn btn-success btn-sm" @click="addToCart(prod)">+</button>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-danger btn-sm" v-on:click="removeFromCart(product)"><i
+                                        class="fa fa-trash"></i>
+                                </button>
+                            </td>
+
+
+                        </tr>
+                    </table>
+                    <div>
+
+                        <div class="d-inline-block m-2">
+                            Toplam Tutar: <span>{{total}} TL</span>
+                        </div>
+
+                        <button class="btn btn-success float-right m-2" v-on:click="checkout()">Satın Al</button>
+                        <button class="btn btn-info float-right m-2" v-on:click="saveCart()">Kaydet</button>
+
+                    </div>
+                </div>
+                <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Satın Al</h5>
+
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Ürün Kodu</th>
+                                        <th>Ürün Adı</th>
+                                        <th>Birim Fiyat</th>
+                                        <th>Adet</th>
+                                        <th>Toplam Fiyat</th>
+                                    </tr>
+                                    <tr v-for="(prod,index) in cart" :key="index">
+
+                                        <td>{{prod.id}}</td>
+                                        <td>{{prod.name}}</td>
+                                        <td>{{prod.price}} TL</td>
+                                        <td>{{prod.quantity}}</td>
+                                        <td>{{prod.price * prod.quantity}} TL</td>
+                                    </tr>
+                                </table>
+                                <div class="d-inline-block m-2">
+                                    Toplam Tutar: <span>{{total}} TL</span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                <button type="button" class="btn btn-primary">Satın Al</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: '#app',
+            name: 'Silicon made academy',
+            data: {
+                name: 'Merhaba Silicon Ailesi',
+                product: null,
+                cart: [],
+
+                products: [
+                    {
+                        id: 'RL100',
+                        name: 'Rocket League 100 Credits',
+                        text: 'Steam / PC (Epic) Rocket League Kredi',
+                        price: 3.5,
+                        image: 'rl.jpeg',
+                        comment: 42,
+                        rating: 4,
+                        negRating: 1,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'RL500',
+                        name: 'Rocket League 500 Credits',
+                        text: 'Steam / PC (Epic) Rocket League Kredi',
+                        price: 15,
+                        image: 'rl.jpeg',
+                        comment: 128,
+                        rating: 3,
+                        negRating: 2,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'RL1000',
+                        name: 'Rocket League 1000 Kredi',
+                        text: 'Steam / PC (Epic) Rocket League Kredi',
+                        price: 27.50,
+                        image: 'rl.jpeg',
+                        comment: 16,
+                        rating: 2,
+                        negRating: 3,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'RL5000',
+                        name: 'Rocket League 5000 Kredi',
+                        text: 'Steam / PC (Epic) Rocket League Kredi',
+                        price: 125,
+                        image: 'rl.jpeg',
+                        comment: 25,
+                        rating: 5,
+                        negRating: 0,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'VP300',
+                        name: 'Valorant Points 300 VP',
+                        text: 'PC Valorant Valorant Points',
+                        price: 16,
+                        image: 'valorant.jpeg',
+                        comment: 32,
+                        rating: 4,
+                        negRating: 1,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'VP600',
+                        name: 'Valorant Points 600 VP',
+                        text: 'PC Valorant Valorant Points',
+                        price: 32,
+                        image: 'valorant.jpeg',
+                        comment: 5,
+                        rating: 2,
+                        negRating: 3,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'VP1250',
+                        name: 'Valorant Points 1250 VP',
+                        text: 'PC Valorant Valorant Points',
+                        price: 64,
+                        image: 'valorant.jpeg',
+                        comment: 78,
+                        rating: 5,
+                        negRating: 0,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'VP2500',
+                        name: 'Valorant Points 2500 VP',
+                        text: 'PC Valorant Valorant Points',
+                        price: 125,
+                        image: 'valorant.jpeg',
+                        comment: 431,
+                        rating: 1,
+                        negRating: 4,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'RP400',
+                        name: 'League of Legends 400 Riot Points (RP)',
+                        text: 'PC League of Legends Riot Points',
+                        price: 16,
+                        image: 'lol.jpeg',
+                        comment: 168,
+                        rating: 3,
+                        negRating: 2,
+                        quantity: 0,
+                    }
+                    ,
+                    {
+                        id: 'RP840',
+                        name: 'League of Legends 840 Riot Points (RP)',
+                        text: 'PC League of Legends Riot Points',
+                        price: 32,
+                        image: 'lol.jpeg',
+                        comment: 66,
+                        rating: 4,
+                        negRating: 1,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'RP1780',
+                        name: 'League of Legends 1780 Riot Points (RP)',
+                        text: 'PC League of Legends Riot Points',
+                        price: 64,
+                        image: 'lol.jpeg',
+                        comment: 7,
+                        rating: 5,
+                        negRating: 0,
+                        quantity: 0,
+                    },
+                    {
+                        id: 'RP3620',
+                        name: 'League of Legends 3620 Riot Points (RP)',
+                        text: 'PC League of Legends Riot Points',
+                        price: 125,
+                        image: 'lol.jpeg',
+                        comment: 23,
+                        rating: 2,
+                        negRating: 3,
+                        quantity: 0,
+                    }
+                ]
+
+            },
+            computed: {
+                total() {
+                    var total = 0;
+                    for (var i = 0; i < this.cart.length; i++) {
+                        total += (this.cart[i].price) * (this.cart[i].quantity);
+                    }
+                    return total;
+                },
+                quantityTotal() {
+                    var quantityTotal = 0;
+                    for (var i = 0; i < this.cart.length; i++) {
+                        quantityTotal += (this.cart[i].quantity);
+                    }
+                    return quantityTotal;
+                },
+
+
+            },
+            mounted() {
+                const count = JSON.parse(localStorage.getItem('cart')).length;
+
+                if (count > 0) {
+                    this.cart = JSON.parse(localStorage.getItem('cart'))
+                }
+
+            },
+
+            methods:
+            {
+
+                addToCart(product) {
+
+                    const indexProduct = this.cart.findIndex(x => x.id === product.id);
+                    if (indexProduct >= 0) {
+                        this.cart[indexProduct].quantity += 1;
+                    }
+                    else {
+                        product.quantity += 1;
+                        this.cart.push(product);
+                        localStorage.setItem('cart', JSON.stringify(this.cart))
+                    }
+
+                },
+                removeFromCart(product) {
+
+                    this.cart.splice(this.cart.indexOf(product));
+                    if (this.cart.length < 1) {
+
+                        localStorage.setItem('cart', JSON.stringify(this.cart))
+                    }
+
+
+
+
+                },
+                removeOne(product) {
+                    if (product.quantity > 0) {
+                        product.quantity -= 1
+                        const index = this.cart.indexOf(product)
+
+                    }
+
+                },
+                saveCart() {
+                    localStorage.setItem('cart', JSON.stringify(this.cart))
+                },
+                checkout() {
+
+                    const cartCount = JSON.parse(localStorage.getItem('cart')).length;
+
+                    if (cartCount > 0) {
+                        $('#userModal').modal('show');
+                    }
+                    else {
+                        alert('Sepetinizde ürün bulunmamaktadır.')
+                    }
+                }
+
+            },
+
+
+        });
+
+    </script>
+</body>
+
+</html>
