@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\AuthController;
 
 //use App\Http\Controllers\admin\AuthController as AdminController;
+use App\Http\Controllers\front\BasketController;
 use App\Http\Controllers\front\CategoryController;
 use App\Http\Controllers\admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\admin\ProductController as AdminProductController;
@@ -34,7 +35,7 @@ Route::get('/register-confirm/{activation_code}', [AuthController::class, 'regis
 Route::match(['post', 'get'], 'login', [AuthController::class, 'login'])->name('login');
 
 
-Route::view('/basket', 'front.basket')->name('basket');
+Route::get('/basket', [BasketController::class, 'index'])->name('basket');
 Route::view('/contact', 'front.contact')->name('contact');
 
 

@@ -44,7 +44,10 @@
 
                             <h4 style="text-align:center">
                                 <a class="btn" href="{{route('product-detail',$product->slug)}}"> <i
-                                        class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i
+                                        class="icon-zoom-in"></i></a>
+                                <a class="btn" href="#"
+                                   v-on:click="addProduct({{$product}})"
+                                >Add to <i
                                         class="icon-shopping-cart"></i></a>
                                 <a class="btn btn-primary" href="#">
                                     ${{$product->price}}
@@ -58,6 +61,46 @@
 
         </ul>
 
+        <span v-text="name"></span>
+
+
     </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('assets/js/vue.js')}}"></script>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Silicon made academy',
+            data: {
+                name: 'test',
+                products: [],
+                totalProduct: ''
+            },
+            mounted() {
+                this.totalProduct = localStorage.getItem('basket')
+            },
+            methods: {
+                addProduct(product) {
+
+                    const total = localStorage.getItem('basket');
+/*
+                    if (total > 0) {
+                        this.products = JSON.parse(localStorage.getItem('basket'));
+                        this.products.push(product);
+                    } else {
+                        this.products.push(product);
+                    }*/
+                    product.total = 1;
+                    this.products.push(product);
+                    this.totalProduct = Number(total) + 1;
+                    localStorage.setItem('basket', this.totalProduct);
+                    localStorage.setItem('products', JSON.stringify(this.products));
+                }
+            }
+        });
+    </script>
 @endsection
 
